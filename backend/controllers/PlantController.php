@@ -79,8 +79,27 @@ class PlantController extends Controller
         $familyList = ArrayHelper::map(Botanicalfamily::find()->all(),'IdFamily', 'Name');
         $typeList = ArrayHelper::map(Planttype::find()->all(),'IdType', 'Name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdPlant]);
+        ///echo '<pre>';
+        if (Yii::$app->request->isPost){
+          $commit = true;
+          $transaction = Yii::$app->db->beginTransaction();
+          $postValues = Yii::$app->request->post();
+          if ($model->load(Yii::$app->request->post()) && $model->save()){
+            $modelChar->IdPlant = $model->IdPlant;
+            foreach ($postValues["PlantCharacteristic"]["IdCharacteristic"] as $index => $IdChar) {
+              $modelChar->IdCharacteristic = $IdChar;
+              $modelChar->Value = $postValues["PlantCharacteristic"]["Value"][$index];
+              if (!$modelChar->save()){
+                $commit = false;
+              }
+            }
+          }
+          if ($commit){
+            $transaction->commit();
+            return $this->redirect(['update', 'id' => $model->IdPlant]);
+          }else{
+            $transaction->rollback();
+          }
         }
 
         return $this->render('create', [
@@ -102,7 +121,14 @@ class PlantController extends Controller
      */
     public function actionUpdate($id)
     {
+        $model = new Plant();
+        $modelChar = new PlantCharacteristic();
+        $modelPhoto = new Photo();
         $model = $this->findModel($id);
+
+        $characteristicData = ArrayHelper::map(Characteristic::find()->where(['not in', 'IdCharacteristic', $model->plantcharacteristics])->all(),'IdCharacteristic', 'Name');
+        $familyList = ArrayHelper::map(Botanicalfamily::find()->all(),'IdFamily', 'Name');
+        $typeList = ArrayHelper::map(Planttype::find()->all(),'IdType', 'Name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->IdPlant]);
@@ -110,6 +136,11 @@ class PlantController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'modelChar' => $modelChar,
+            'modelPhoto' => $modelPhoto,
+            'typeList' => $typeList,
+            'familyList' => $familyList,
+            'characteristicList' => $characteristicData
         ]);
     }
 

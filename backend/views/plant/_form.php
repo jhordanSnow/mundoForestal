@@ -8,14 +8,13 @@ use kartik\widgets\Select2;
 /* @var $model backend\models\Plant */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
+<?php $form = ActiveForm::begin(); ?>
 <div class="plant-form">
   <div class="panel-group">
     <div class="row">
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-body">
-            <?php $form = ActiveForm::begin(); ?>
             <?= $form->field($model, 'Name')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'ScientificName')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'IdFamily')->widget(Select2::classname(), [
@@ -30,7 +29,6 @@ use kartik\widgets\Select2;
             <div class="form-group">
               <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
             </div>
-            <?php ActiveForm::end(); ?>
           </div>
         </div>
       </div>
@@ -69,7 +67,20 @@ use kartik\widgets\Select2;
             </div>
 
             <div class="panel">
-              <div id="panel-characteristics" class="panel-body" style="max-height: 100px;overflow-y: auto;"></div>
+              <div id="panel-characteristics" class="panel-body" style="max-height: 100px;overflow-y: auto;">
+
+                <?php foreach ($model->plantcharacteristics as $plantChar) { ?>
+                  <div class="row row-characteristic" id="characteristic_id_<?= $plantChar["IdCharacteristic"] ?>">
+                  <input type="hidden" id="characteristic_value_<?= $plantChar["IdCharacteristic"] ?>" name="PlantCharacteristic[Value][]" value="<?= $plantChar["Value"] ?>">
+                  <input type="hidden" id="characteristic_value_desc_<?= $plantChar["IdCharacteristic"] ?>" value="<?= $plantChar->characteristic["Name"] ?>">
+                  <input type="hidden" name="PlantCharacteristic[IdCharacteristic][]" value="<?= $plantChar["IdCharacteristic"] ?>">
+                  <div class="col-md-11"><?= $plantChar->characteristic["Name"] ?>: <?= $plantChar["Value"] ?></div>
+                  <div class="col-md-1"><span class="glyphicon glyphicon-remove" onclick="removeOption(<?= $plantChar["IdCharacteristic"] ?>)" aria-hidden="true"></span></div>
+                  </div>
+
+                <?php } ?>
+
+              </div>
             </div>
 
           </div>
@@ -89,3 +100,4 @@ use kartik\widgets\Select2;
     </div>
   </div>
 </div
+<?php ActiveForm::end(); ?>

@@ -4,9 +4,9 @@ function caca(){
   var textChar = $("#characteristic_id option:selected").text();;
 
   var toPrint = '<div class="row row-characteristic" id="characteristic_id_'+idChar+'">';
-  toPrint += '<input type="hidden" id="characteristic_value_'+idChar+'" name="PlantCharacteristic[Value]" value="'+valuePrint+'">'
+  toPrint += '<input type="hidden" id="characteristic_value_'+idChar+'" name="PlantCharacteristic[Value][]" value="'+valuePrint+'">'
   toPrint += '<input type="hidden" id="characteristic_value_desc_'+idChar+'" value="'+textChar+'">'
-  toPrint += '<input type="hidden" name="PlantCharacteristic[IdCharacteristic]" value="'+idChar+'">'
+  toPrint += '<input type="hidden" name="PlantCharacteristic[IdCharacteristic][]" value="'+idChar+'">'
   toPrint += '<div class="col-md-11">'+textChar+': '+valuePrint+'</div>';
   toPrint += '<div class="col-md-1"><span class="glyphicon glyphicon-remove" onclick="removeOption('+idChar+')" aria-hidden="true"></span></div>';
   toPrint += '</div>';

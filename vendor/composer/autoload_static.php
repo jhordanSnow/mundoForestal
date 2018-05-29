@@ -63,6 +63,13 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
             'kartik\\alert\\' => 13,
             'kartik\\affix\\' => 13,
         ),
+        'h' => 
+        array (
+            'hiqdev\\yii2\\collection\\' => 23,
+            'hiqdev\\themes\\flat\\' => 19,
+            'hiqdev\\thememanager\\' => 20,
+            'hiqdev\\php\\collection\\' => 22,
+        ),
         'd' => 
         array (
             'dmstr\\' => 6,
@@ -248,6 +255,22 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'kartik\\affix\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-affix',
+        ),
+        'hiqdev\\yii2\\collection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hiqdev/yii2-collection/src',
+        ),
+        'hiqdev\\themes\\flat\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hiqdev/yii2-theme-flat/src',
+        ),
+        'hiqdev\\thememanager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hiqdev/yii2-thememanager/src',
+        ),
+        'hiqdev\\php\\collection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hiqdev/php-collection/src',
         ),
         'dmstr\\' => 
         array (

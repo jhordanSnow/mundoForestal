@@ -264,4 +264,31 @@ return array (
       '@kartik/widgets' => $vendorDir . '/kartik-v/yii2-widgets',
     ),
   ),
+  'hiqdev/yii2-collection' => 
+  array (
+    'name' => 'hiqdev/yii2-collection',
+    'version' => '0.1.1.0',
+    'alias' => 
+    array (
+      '@hiqdev/yii2/collection' => $vendorDir . '/hiqdev/yii2-collection/src',
+    ),
+  ),
+  'hiqdev/yii2-thememanager' => 
+  array (
+    'name' => 'hiqdev/yii2-thememanager',
+    'version' => '0.3.2.0',
+    'alias' => 
+    array (
+      '@hiqdev/thememanager' => $vendorDir . '/hiqdev/yii2-thememanager/src',
+    ),
+  ),
+  'hiqdev/yii2-theme-flat' => 
+  array (
+    'name' => 'hiqdev/yii2-theme-flat',
+    'version' => '0.0.1.0',
+    'alias' => 
+    array (
+      '@hiqdev/themes/flat' => $vendorDir . '/hiqdev/yii2-theme-flat/src',
+    ),
+  ),
 );

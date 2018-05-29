@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d3d97cb8ed4f25941e0788a5f046664",
+    "content-hash": "1350274cb5b49e46be39e1fad825bb9f",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -638,6 +638,281 @@
                 "icon"
             ],
             "time": "2016-10-24T15:52:54+00:00"
+        },
+        {
+            "name": "hiqdev/php-collection",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiqdev/php-collection.git",
+                "reference": "285eba8e15b66bfc1b83949bcc0148a17b76f17d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiqdev/php-collection/zipball/285eba8e15b66bfc1b83949bcc0148a17b76f17d",
+                "reference": "285eba8e15b66bfc1b83949bcc0148a17b76f17d",
+                "shasum": ""
+            },
+            "require-dev": {
+                "hiqdev/hidev-hiqdev": "*",
+                "hiqdev/hidev-php": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "hiqdev\\php\\collection\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Naumenko",
+                    "email": "silverfire@hiqdev.com",
+                    "homepage": "http://silverfire.me/",
+                    "role": "Lead backend developer"
+                },
+                {
+                    "name": "Andrii Vasyliev",
+                    "email": "sol@hiqdev.com",
+                    "homepage": "http://hipanel.com/",
+                    "role": "Project lead"
+                },
+                {
+                    "name": "Andrey Klochok",
+                    "email": "tafid@hiqdev.com",
+                    "homepage": "http://hiqdev.com/",
+                    "role": "Lead frontend developer"
+                },
+                {
+                    "name": "Yuriy Myronchuk",
+                    "email": "bladeroot@hiqdev.com",
+                    "homepage": "http://hiqdev.com/",
+                    "role": "QA Lead"
+                }
+            ],
+            "description": "Collection library for PHP",
+            "homepage": "https://github.com/hiqdev/php-collection",
+            "keywords": [
+                "collection",
+                "library",
+                "php"
+            ],
+            "time": "2016-12-30T15:29:11+00:00"
+        },
+        {
+            "name": "hiqdev/yii2-collection",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiqdev/yii2-collection.git",
+                "reference": "2d2fcd7ea245bddfd6a51665fab9db6e17fd2099"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiqdev/yii2-collection/zipball/2d2fcd7ea245bddfd6a51665fab9db6e17fd2099",
+                "reference": "2d2fcd7ea245bddfd6a51665fab9db6e17fd2099",
+                "shasum": ""
+            },
+            "require": {
+                "hiqdev/php-collection": "*",
+                "yiisoft/yii2": "~2.0"
+            },
+            "require-dev": {
+                "hiqdev/hidev-hiqdev": "<2.0",
+                "hiqdev/hidev-php": "<2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "hiqdev\\yii2\\collection\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Andrii Vasyliev",
+                    "email": "sol@hiqdev.com",
+                    "homepage": "http://hipanel.com/",
+                    "role": "Project lead"
+                },
+                {
+                    "name": "Dmitry Naumenko",
+                    "email": "d.naumenko.a@gmail.com",
+                    "homepage": "http://silverfire.me/",
+                    "role": "Lead backend developer"
+                },
+                {
+                    "name": "Andrey Klochok",
+                    "email": "andreyklochok@gmail.com",
+                    "homepage": "http://hiqdev.com/",
+                    "role": "Lead frontend developer"
+                },
+                {
+                    "name": "Yuriy Myronchuk",
+                    "email": "bladeroot@gmail.com",
+                    "homepage": "http://hiqdev.com/",
+                    "role": "QA Lead"
+                }
+            ],
+            "description": "Collection library for Yii2",
+            "homepage": "https://github.com/hiqdev/yii2-collection",
+            "keywords": [
+                "collection",
+                "extension",
+                "yii2"
+            ],
+            "time": "2017-05-10T10:00:06+00:00"
+        },
+        {
+            "name": "hiqdev/yii2-theme-flat",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiqdev/yii2-theme-flat.git",
+                "reference": "3b41375ec687eb37e3d801cc70f1a557c73dfccd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiqdev/yii2-theme-flat/zipball/3b41375ec687eb37e3d801cc70f1a557c73dfccd",
+                "reference": "3b41375ec687eb37e3d801cc70f1a557c73dfccd",
+                "shasum": ""
+            },
+            "require": {
+                "hiqdev/yii2-thememanager": "<2.0 || dev-master",
+                "yiisoft/yii2-bootstrap": "~2.0.0"
+            },
+            "require-dev": {
+                "hiqdev/hidev-hiqdev": "<2.0",
+                "hiqdev/hidev-php": "<2.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "config-plugin": {
+                    "hisite": "src/config/hisite.php"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "hiqdev\\themes\\flat\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Naumenko",
+                    "email": "silverfire@hiqdev.com",
+                    "homepage": "http://silverfire.me/",
+                    "role": "Lead backend developer"
+                },
+                {
+                    "name": "Andrii Vasyliev",
+                    "email": "sol@hiqdev.com",
+                    "homepage": "http://hipanel.com/",
+                    "role": "Project lead"
+                },
+                {
+                    "name": "Andrey Klochok",
+                    "email": "tafid@hiqdev.com",
+                    "homepage": "http://hiqdev.com/",
+                    "role": "Lead frontend developer"
+                },
+                {
+                    "name": "Yuriy Myronchuk",
+                    "email": "bladeroot@hiqdev.com",
+                    "homepage": "http://hiqdev.com/",
+                    "role": "QA Lead"
+                }
+            ],
+            "description": "Flat Theme for hiqdev/yii2-thememanager",
+            "homepage": "https://github.com/hiqdev/yii2-theme-flat",
+            "keywords": [
+                "extension",
+                "flat",
+                "theme",
+                "yii2"
+            ],
+            "time": "2016-09-09T10:18:56+00:00"
+        },
+        {
+            "name": "hiqdev/yii2-thememanager",
+            "version": "0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiqdev/yii2-thememanager.git",
+                "reference": "bc15709d56e771a955f76d7e2537dd3ce546b18a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiqdev/yii2-thememanager/zipball/bc15709d56e771a955f76d7e2537dd3ce546b18a",
+                "reference": "bc15709d56e771a955f76d7e2537dd3ce546b18a",
+                "shasum": ""
+            },
+            "require": {
+                "hiqdev/yii2-collection": "*"
+            },
+            "require-dev": {
+                "hiqdev/hidev-hiqdev": "<2.0",
+                "hiqdev/hidev-php": "<2.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "config-plugin": {
+                    "params": "src/config/params.php",
+                    "web": "src/config/web.php"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "hiqdev\\thememanager\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Andrii Vasyliev",
+                    "email": "sol@hiqdev.com",
+                    "homepage": "http://hipanel.com/",
+                    "role": "Project lead"
+                },
+                {
+                    "name": "Dmitry Naumenko",
+                    "email": "d.naumenko.a@gmail.com",
+                    "homepage": "http://silverfire.me/",
+                    "role": "Lead backend developer"
+                },
+                {
+                    "name": "Andrey Klochok",
+                    "email": "andreyklochok@gmail.com",
+                    "homepage": "http://hiqdev.com/",
+                    "role": "Lead frontend developer"
+                },
+                {
+                    "name": "Yuriy Myronchuk",
+                    "email": "bladeroot@gmail.com",
+                    "homepage": "http://hiqdev.com/",
+                    "role": "QA Lead"
+                }
+            ],
+            "description": "Pluggable themes for Yii2",
+            "homepage": "https://github.com/hiqdev/yii2-thememanager",
+            "keywords": [
+                "manager",
+                "theme",
+                "yii2"
+            ],
+            "time": "2017-10-04T10:01:41+00:00"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",

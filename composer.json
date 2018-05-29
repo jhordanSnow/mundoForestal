@@ -21,7 +21,8 @@
         "dmstr/yii2-adminlte-asset": "2.*",
         "wbraganca/yii2-dynamicform": "*",
         "kartik-v/yii2-krajee-base": "dev-master",
-        "kartik-v/yii2-widgets": "*"
+        "kartik-v/yii2-widgets": "*",
+        "hiqdev/yii2-theme-flat": "^0.0.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
