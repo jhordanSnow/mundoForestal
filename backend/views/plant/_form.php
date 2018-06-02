@@ -4,9 +4,30 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\widgets\Select2;
 
+use dosamigos\google\maps\LatLng;
+use dosamigos\google\maps\overlays\Polygon;
+use dosamigos\google\maps\overlays\InfoWindow;
+use dosamigos\google\maps\Map;
+use dosamigos\google\maps\layers\BicyclingLayer;
+use dosamigos\google\maps\Event;
+
 /* @var $this yii\web\View */
 /* @var $model backend\models\Plant */
 /* @var $form yii\widgets\ActiveForm */
+$coord = new LatLng(['lat' => 9.9333300, 'lng' => -84.0833300]);
+$coords = [];
+$map = new Map([
+    'center' => $coord,
+    'zoom' => 8,
+    'height' => 420,
+    'polygon' => new Polygon(['paths' => $coords]),
+]);
+
+
+//$polygon->attachInfoWindow(new InfoWindow(['content' => '<p>This is my super cool Polygon</p>']));
+
+$event = new Event(["trigger"=>"click","js"=>"fnCaca(this)"]);
+$map->addEvent($event);
 ?>
 <?php $form = ActiveForm::begin(); ?>
 <div class="plant-form">
@@ -25,7 +46,7 @@ use kartik\widgets\Select2;
               'data' => $typeList,
               'options' => ['placeholder' => 'Seleccione una familia botánica'],
             ]); ?>
-            <?= $form->field($model, 'Description')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'Description')->textarea(['rows' => 18]) ?>
             <div class="form-group">
               <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
             </div>
@@ -86,15 +107,29 @@ use kartik\widgets\Select2;
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-body">Mapa</div>
+          <div class="panel-body">
+            <?= $map->display(); ?>
+          </div>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12" style="margin-top: 10px;">
         <div class="panel panel-default">
-          <div class="panel-heading" id="filecontainer">Fotos
-            <?= Html::fileInput('Photo[]','',['multiple' => true,'id'=>'uploadFiles','class'=>'pull-right','accept'=>'.jpg,.jpeg,.png']) ?>
+          <div class="panel-heading" id="filecontainer"><?= $form->field($modelPhoto, 'photos[]')->fileInput(['multiple' => true,'id'=>'uploadFiles','class'=>'pull-right','accept'=>'.jpg,.jpeg,.png']) ?>
           </div>
-          <div class="panel-body" id="contentImages"></div>
+          <div class="panel-body" id="contentImages">
+            <?php
+            $path = Yii::getAlias('@web'). '/Images/';
+            $fileNames = "";
+            foreach ($model->photos as $photo) { ?>
+              <div class='col-md-3' style='overflow: hidden; height: 250px;margin-bottom:10px;'>
+                <a class='fa fa-remove btn btn-danger' style='float:right;position: absolute;' OnClick='deleteImage(this)' element-name='<?=$photo->Photo?>'></a>
+                <?php echo Html::img('@web/Images/'.$photo->Photo, ['class' => 'pull-left img-responsive']); ?>
+              </div>
+            <?php
+              $fileNames .= $photo->Photo.",";
+            } ?>
+          </div>
+          <input type="hidden" value="<?=$fileNames?>" name="uploadFilesNames" id="uploadFilesNames" />
         </div>
       </div>
     </div>

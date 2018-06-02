@@ -34,6 +34,7 @@
                     ['label' => 'Plantas', 'icon' => 'leaf', 'url' => ['/plant']],
                     ['label' => 'Familias botánicas', 'icon' => 'pagelines', 'url' => ['/botanical-family']],
                     ['label' => 'Tipos de plantas', 'icon' => 'tree', 'url' => ['/planttype']],
+                    ['label' => 'Características', 'icon' => 'envira', 'url' => ['/characteristic']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],

@@ -22,7 +22,9 @@
         "wbraganca/yii2-dynamicform": "*",
         "kartik-v/yii2-krajee-base": "dev-master",
         "kartik-v/yii2-widgets": "*",
-        "hiqdev/yii2-theme-flat": "^0.0.1"
+        "hiqdev/yii2-theme-flat": "^0.0.1",
+        "ramosisw/yii2-material-dashboard": "dev-master",
+        "2amigos/yii2-google-maps-library": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

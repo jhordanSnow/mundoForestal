@@ -10,6 +10,8 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
@@ -33,6 +35,7 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'r' => 
         array (
             'rmrevin\\yii\\fontawesome\\' => 24,
+            'ramosisw\\CImaterial\\' => 20,
         ),
         'p' => 
         array (
@@ -72,6 +75,7 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         ),
         'd' => 
         array (
+            'dosamigos\\google\\maps\\' => 22,
             'dmstr\\' => 6,
         ),
         'c' => 
@@ -102,6 +106,8 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
         ),
         'F' => 
         array (
@@ -161,6 +167,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'rmrevin\\yii\\fontawesome\\' => 
         array (
             0 => __DIR__ . '/..' . '/rmrevin/yii2-fontawesome',
+        ),
+        'ramosisw\\CImaterial\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ramosisw/yii2-material-dashboard',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
@@ -272,6 +282,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         array (
             0 => __DIR__ . '/..' . '/hiqdev/php-collection/src',
         ),
+        'dosamigos\\google\\maps\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-google-maps-library',
+        ),
         'dmstr\\' => 
         array (
             0 => __DIR__ . '/..' . '/dmstr/yii2-adminlte-asset',
@@ -331,6 +345,14 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'Faker\\' => 
         array (

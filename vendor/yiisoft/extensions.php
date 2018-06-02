@@ -291,4 +291,13 @@ return array (
       '@hiqdev/themes/flat' => $vendorDir . '/hiqdev/yii2-theme-flat/src',
     ),
   ),
+  'ramosisw/yii2-material-dashboard' => 
+  array (
+    'name' => 'ramosisw/yii2-material-dashboard',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@ramosisw/CImaterial' => $vendorDir . '/ramosisw/yii2-material-dashboard',
+    ),
+  ),
 );

@@ -15,6 +15,8 @@ use Yii;
  */
 class Photo extends \yii\db\ActiveRecord
 {
+    public $photos;
+
     /**
      * @inheritdoc
      */
@@ -29,9 +31,37 @@ class Photo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Photo'], 'required'],
             [['Photo'], 'string', 'max' => 255],
+            [['photos'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 420],
+
         ];
+    }
+
+    public function upload($idPlant, $listInserted)
+    {
+      if ($this->validate()) {
+        $path = Yii::getAlias('@backend'). '/web/Images/';
+        foreach ($this->photos as $file) {
+          if (in_array($file->name, $listInserted)){
+            $modelPhoto = new Photo();
+            $modelPhoto->Photo = Yii::$app->security->generateRandomString() . '.' . $file->extension;
+            if ($modelPhoto->save()){
+              $modelChar = new PlantPhoto();
+              $modelChar->IdPlant = $idPlant;
+              $modelChar->IdPhoto = $modelPhoto->IdPhoto;
+              if (!$modelChar->save()){
+                return false;
+              }
+            }else{
+              return false;
+            }
+            $file->saveAs($path . $modelPhoto->Photo);
+          }
+        }
+        return true;
+      } else {
+        return false;
+      }
     }
 
     /**

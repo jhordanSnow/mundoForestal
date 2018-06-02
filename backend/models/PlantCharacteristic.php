@@ -14,7 +14,7 @@ use Yii;
  * @property Characteristic $characteristic
  * @property Plant $plant
  */
-class PlantCharacteristic extends \yii\db\ActiveRecord
+class Plantcharacteristic extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -33,7 +33,6 @@ class PlantCharacteristic extends \yii\db\ActiveRecord
             [['IdPlant', 'IdCharacteristic', 'Value'], 'required'],
             [['IdPlant', 'IdCharacteristic'], 'integer'],
             [['Value'], 'string', 'max' => 255],
-            [['IdPlant', 'IdCharacteristic'], 'unique', 'targetAttribute' => ['IdPlant', 'IdCharacteristic']],
             [['IdCharacteristic'], 'exist', 'skipOnError' => true, 'targetClass' => Characteristic::className(), 'targetAttribute' => ['IdCharacteristic' => 'IdCharacteristic']],
             [['IdPlant'], 'exist', 'skipOnError' => true, 'targetClass' => Plant::className(), 'targetAttribute' => ['IdPlant' => 'IdPlant']],
         ];
@@ -65,5 +64,9 @@ class PlantCharacteristic extends \yii\db\ActiveRecord
     public function getPlant()
     {
         return $this->hasOne(Plant::className(), ['IdPlant' => 'IdPlant']);
+    }
+
+    public static function primaryKey(){
+      return ['Value'];
     }
 }

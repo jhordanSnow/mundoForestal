@@ -1,7 +1,29 @@
+var poly = new google.maps.Polyline({
+  strokeColor: '#000000',
+  strokeOpacity: 1.0,
+  strokeWeight: 3
+});
+//poly.setMap(google.maps.Map);
+
+function fnCaca(event){
+  var path = poly.getPath();
+
+        // Because path is an MVCArray, we can simply append a new coordinate
+        // and it will automatically appear.
+        path.push(event.latLng);
+
+        // Add a new marker at the new plotted point on the polyline.
+        var marker = new google.maps.Marker({
+          position: event.latLng,
+          title: '#' + path.getLength(),
+          map: google.maps.Map,
+        });
+}
+
 function caca(){
   var valuePrint = $("#valor_add").val();
   var idChar = $("#characteristic_id").val();
-  var textChar = $("#characteristic_id option:selected").text();;
+  var textChar = $("#characteristic_id option:selected").text();
 
   var toPrint = '<div class="row row-characteristic" id="characteristic_id_'+idChar+'">';
   toPrint += '<input type="hidden" id="characteristic_value_'+idChar+'" name="PlantCharacteristic[Value][]" value="'+valuePrint+'">'
@@ -31,42 +53,38 @@ function AddToSelect(text, id, selected){
   $("#characteristic_id").val(id).trigger("change");
 }
 
-
-
-var finalFiles = [];
 $(function () {
     var inputLocalFont = document.getElementById("uploadFiles");
     inputLocalFont.addEventListener("change", previewImages, false);
 
     function previewImages() {
         var fileList = this.files;
-
         var anyWindow = window.URL || window.webkitURL;
 
         for (var i = 0; i < fileList.length; i++) {
             var objectUrl = anyWindow.createObjectURL(fileList[i]);
-            finalFiles.push(fileList[i].name);
-            var index = finalFiles.indexOf(fileList[i].name);
 
-            var content = "<div class='col-md-3' style='overflow: hidden; height: 250px;margin-bottom:10px;' id='image_" + index +"'>";
-            content += "<a class='fa fa-remove btn btn-danger' style='float:right;position: absolute;' OnClick='deleteImage(this)' index-element='" + index+"'></a>";
+            var content = "<div class='col-md-3' style='overflow: hidden; height: 250px;margin-bottom:10px;'>";
+            content += "<a class='fa fa-remove btn btn-danger' style='float:right;position: absolute;' OnClick='deleteImage(this)' element-name='"+fileList[i].name+"'></a>";
             content += "<img class='img-responsive img-rounded' src='" + objectUrl + "' />";
             content += "</div>";
 
             $('#contentImages').append(content);
+            var names = $("#uploadFilesNames").val();
+            $("#uploadFilesNames").val(names+fileList[i].name+',')
             window.URL.revokeObjectURL(fileList[i]);
         }
 
         $(inputLocalFont).hide();
-        inputLocalFont = $('<input type="file" id="uploadFiles" class="pull-right" accept=".jpg,.jpeg,.png" name="Photo[]" value="" multiple="">').appendTo("#filecontainer").get(0);
+        inputLocalFont = $('<input type="file" id="uploadFiles" class="pull-right" accept=".jpg,.jpeg,.png" name="Photo[photos][]" value="" multiple="">').appendTo("#filecontainer").get(0);
         inputLocalFont.addEventListener("change", previewImages, false);
-        $("#uploadFilesNames").val(finalFiles);
     }
 });
 
 function deleteImage(object) {
-    var index = $(object).attr("index-element");
-    $("#image_" + index + "").remove();
-    delete finalFiles[index];
-    $("#uploadFilesNames").val(finalFiles);
+    var name = $(object).attr("element-name");
+    var names = $("#uploadFilesNames").val();
+    names = names.replace(name+',','');
+    $("#uploadFilesNames").val(names);
+    $(object).parent().remove();
 }

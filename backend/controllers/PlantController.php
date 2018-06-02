@@ -15,6 +15,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\web\UploadedFile;
 
 /**
  * PlantController implements the CRUD actions for Plant model.
@@ -79,20 +80,14 @@ class PlantController extends Controller
         $familyList = ArrayHelper::map(Botanicalfamily::find()->all(),'IdFamily', 'Name');
         $typeList = ArrayHelper::map(Planttype::find()->all(),'IdType', 'Name');
 
-        ///echo '<pre>';
         if (Yii::$app->request->isPost){
           $commit = true;
           $transaction = Yii::$app->db->beginTransaction();
           $postValues = Yii::$app->request->post();
           if ($model->load(Yii::$app->request->post()) && $model->save()){
-            $modelChar->IdPlant = $model->IdPlant;
-            foreach ($postValues["PlantCharacteristic"]["IdCharacteristic"] as $index => $IdChar) {
-              $modelChar->IdCharacteristic = $IdChar;
-              $modelChar->Value = $postValues["PlantCharacteristic"]["Value"][$index];
-              if (!$modelChar->save()){
-                $commit = false;
-              }
-            }
+            (array_key_exists("PlantCharacteristic",$postValues)) ? $commit = $this->InsertCharacteristics($model->IdPlant, $postValues["PlantCharacteristic"]) : '';
+            $commit = $this->InsertPhotos($modelPhoto, $model->IdPlant,explode(',',$postValues["uploadFilesNames"]));
+            //$commit = InsertGeolocation($postValues["Photos"]);
           }
           if ($commit){
             $transaction->commit();
@@ -110,6 +105,50 @@ class PlantController extends Controller
             'familyList' => $familyList,
             'characteristicList' => $characteristicData
         ]);
+    }
+
+    public function DeleteCharacteristics($idPlant, $listCharacteristics){
+      $commit = true;
+      if (!PlantCharacteristic::deleteAll(['IdPlant' => $idPlant])){
+        $commit = false;
+      }
+      return $commit;
+    }
+
+    public function InsertCharacteristics($idPlant, $listCharacteristics){
+      $commit = true;
+      $listValues = [];
+      for ($i=0; $i < count($listCharacteristics["Value"]); $i++) {
+        $listValues[$i] = [$listCharacteristics["Value"][$i], $listCharacteristics["IdCharacteristic"][$i], $idPlant];
+      }
+      if(Yii::$app->db->createCommand()->batchInsert("plantcharacteristic", ["Value", "IdCharacteristic", "IdPlant"], $listValues)->execute() <= 0){
+        $commit = false;
+      }
+      return $commit;
+    }
+
+    public function InsertPhotos($model, $idPlant, $listInserted){
+      $commit = true;
+      $model->photos = UploadedFile::getInstances($model,'photos');
+      if (!$model->upload($idPlant, $listInserted)){
+        $commit = false;
+      }
+      return $commit;
+    }
+
+    public function DeletePhotos($model, $listInserted){
+      $commit = true;
+      echo '<pre>';
+      foreach ($model->photos as $photo) {
+        if (!in_array($photo->Photo, $listInserted)){
+          if (!Photo::deleteAll(["IdPhoto" => $photo->IdPhoto])){
+            $commit = false;
+          }else{
+            unlink(Yii::getAlias('@backend'). '/web/Images/'.$photo->Photo);
+          }
+        }
+      }
+      return $commit;
     }
 
     /**
@@ -130,8 +169,24 @@ class PlantController extends Controller
         $familyList = ArrayHelper::map(Botanicalfamily::find()->all(),'IdFamily', 'Name');
         $typeList = ArrayHelper::map(Planttype::find()->all(),'IdType', 'Name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdPlant]);
+        if (Yii::$app->request->isPost){
+          $commit = true;
+          $transaction = Yii::$app->db->beginTransaction();
+          $postValues = Yii::$app->request->post();
+          if ($model->load($postValues) && $model->save()){
+            (count($model->plantcharacteristics) > 0) ? $commit = $this->DeleteCharacteristics($model->IdPlant, $model->plantcharacteristics) : '';
+            (array_key_exists("PlantCharacteristic", $postValues)) ? $commit = $this->InsertCharacteristics($model->IdPlant, $postValues["PlantCharacteristic"]) : '';
+            $commit = $this->DeletePhotos($model, explode(',',$postValues["uploadFilesNames"]));
+            $commit = $this->InsertPhotos($modelPhoto, $model->IdPlant,explode(',',$postValues["uploadFilesNames"]));
+            //$commit = InsertGeolocation($postValues["Photos"]);
+          }
+          if ($commit){
+            $transaction->commit();
+            return $this->redirect(['update', 'id' => $model->IdPlant]);
+          }else{
+            $transaction->rollback();
+            return $this->redirect(['index']);
+          }
         }
 
         return $this->render('update', [
