@@ -1,41 +1,9 @@
-$(function () {
-  // Slideshow 4
-  $("#slider4").responsiveSlides({
-    auto: true,
-    pager: true,
-    nav: false,
-    speed: 900,
-    namespace: "callbacks",
-    before: function () {
-      $('.events').append("<li>before event fired.</li>");
-    },
-    after: function () {
-      $('.events').append("<li>after event fired.</li>");
-    }
-  });
-
-});
-
 jQuery(document).ready(function ($) {
   $(".scroll").click(function (event) {
     event.preventDefault();
     $('html,body').animate({
       scrollTop: $(this.hash).offset().top
     }, 1000);
-  });
-});
-
-$(document).ready(function () {
-  /*
-    var defaults = {
-    containerID: 'toTop', // fading element id
-    containerHoverID: 'toTopHover', // fading element hover id
-    scrollSpeed: 1200,
-    easingType: 'linear'
-    };
-  */
-  $().UItoTop({
-    easingType: 'easeOutQuart'
   });
 });
 
@@ -60,10 +28,24 @@ $(document).ready(function () {
 
         return false;
     });
-});
 
-$(document).ready(function (){
   $("#a-logout").click(function (){
     $("#btn-logout").click();
   })
+  $("#closeModal").click(function (){
+    $("#imageModal").hide();
+  })
+
 })
+
+
+
+
+function showImage(obj){
+  var img = $(obj);
+  var modal = $("#imageModal");
+  var modalImg = $("#imageModal .modal-content");
+
+  modal.show();
+  modalImg.attr('src',img.attr('src'));
+}

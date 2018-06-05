@@ -14,6 +14,9 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
 use backend\models\Plant;
+use backend\models\Question;
+use backend\models\Terminology;
+use backend\models\QuestionCategory;
 use backend\models\Planttype;
 use backend\models\Botanicalfamily;
 
@@ -45,7 +48,7 @@ class ArboriculturaController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                ],
+              ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -76,8 +79,43 @@ class ArboriculturaController extends Controller
       return $this->render('arboricultor');
     }
 
+    public function actionTerminologia(){
+      $terms = Terminology::find();
+      $terms->andFilterWhere([
+          'and',
+          ['like', 'IdTerminology', Yii::$app->getRequest()->getQueryParam('IdTerminology')],
+      ]);
+      $countQuery = clone $terms;
+      $pages = new Pagination(['totalCount' => $terms->count(), 'pageSize' => 10]);
+      $models = $terms->offset($pages->offset)->limit($pages->limit)->all();
+
+      $termList = ArrayHelper::map(Terminology::find()->all(),'IdTerminology', 'Term');
+
+      return $this->render('terminology',[
+        'pages' => $pages,
+        'terms' => $models,
+        'termList' => $termList,
+      ]);
+    }
+
     public function actionQuestions(){
-      return $this->render('questions');
+
+      $questions = Question::find();
+      $questions->andFilterWhere([
+          'and',
+          ['like', 'IdCategory', Yii::$app->getRequest()->getQueryParam('IdCategory')],
+      ]);
+      $countQuery = clone $questions;
+      $pages = new Pagination(['totalCount' => $questions->count(), 'pageSize' => 10]);
+      $models = $questions->offset($pages->offset)->limit($pages->limit)->all();
+
+      $categoryList = ArrayHelper::map(QuestionCategory::find()->all(),'IdCategory', 'Name');
+
+      return $this->render('questions',[
+        'pages' => $pages,
+        'questions' => $models,
+        'categoryList' => $categoryList,
+      ]);
     }
 
     public function actionSearchPlant(){

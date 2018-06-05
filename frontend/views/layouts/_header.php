@@ -17,6 +17,7 @@ use yii\helpers\Html;
             ['label' => 'Inicio', 'url' => ['/site/index']],
             ['label' => 'Quienes somos', 'url' => ['/site/about']],
             ['label' => 'Arboricultura', 'items' => [
+                    ['label' => 'Plantas', 'url' => ['/arboricultura/search-plant']],
                     ['label' => 'Arboricultor', 'url' => ['/arboricultura/arboricultor']],
                     ['label' => 'Cazadores de carbono', 'url' => ['/arboricultura/cazadores-de-carbono']],
                     ['label' => 'La chaya', 'url' => ['/arboricultura/la-chaya']],

@@ -55,38 +55,51 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="site-about">
     <div class="row">
 
-      <?php foreach ($plants as $plant) {
+    <?php
+    if (count($plants) == 0){ ?>
+      <div class="no-record">;
+        <h1 class="title">No se encontraron resultados. </h1><br />
+        <img class="img-responsive" src="../../<?=Yii::$app->urlManagerBackend->baseUrl?>/noRecord.png"/>
+      </div>
+    <?php }else{
+
+      foreach ($plants as $plant) {
         $items = [];
         foreach ($plant->photos as $photo) {
-           $items[] = '<img class="img-responsive" src="../../'.Yii::$app->urlManagerBackend->baseUrl.'/'.$photo->Photo.'"/>';
+           $items[] = '<img onclick="showImage(this)" class="img-responsive" src="../../'.Yii::$app->urlManagerBackend->baseUrl.'/'.$photo->Photo.'"/>';
         }
       ?>
         <div class="col-md-12 row row-plant">
+          <h2 class="title"><?= $plant->Name ?></h2>
+          <h2 class="title small-title">Nombre científico: <i><?= $plant->ScientificName ?></i></h2>
+          <h2 class="title small-title">Familia botánica: <b><?= $plant->family->Name ?></b></h2>
+          <br />
            <div class="col-md-3">
              <?= Carousel::widget([
                'options' => ['class' => 'row-carousel'],
                'items' => $items,
              ]);?>
            </div>
-           <div class="col-md-9">
-             <h2 class="title"><?= $plant->Name ?></h2>
-             <h2 class="title small-title">Nombre científico: <i><?= $plant->ScientificName ?></i></h2>
-             <h2 class="title small-title">Familia botánica: <b><?= $plant->family->Name ?></b></h2>
-             <br />
-             <div class="row plant-char">
+           <div class="row">
+             <div class="row col-md-9 plant-char">
                <?php foreach ($plant->plantcharacteristics as $char) { ?>
                  <div class="col-md-3">
                    <?= $char->characteristic->Name ?> : <?= $char->Value ?>
                  </div>
                <?php } ?>
              </div>
-              <br />
-             <?= $plant->Description ?>
+             <br />
+             <?= nl2br($plant->Description) ?>
            </div>
         </div>
-      <?php } ?>
-
+      <?php }} ?>
     </div>
     <?= LinkPager::widget(['pagination' => $pages]); ?>
   </div>
+</div>
+
+
+<div id="imageModal" class="modal modal-image">
+  <span id="closeModal" class="close">&times;</span>
+  <img class="modal-content">
 </div>

@@ -17,15 +17,15 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="site-consultorio">
     <div class="row">
       <div class="col-md-3">
-        <?= Html::label('Categorías', 'IdCategory') ?>
+        <?= Html::label('Términos', 'IdTerminology') ?>
         <ul class="nav nav-tabs nav-stacked side-nav">
           <li></li>
           <?php
-          foreach ($categoryList as $id => $category) {
-            $class = (Yii::$app->getRequest()->getQueryParam('IdCategory') == $id) ? 'actual' : '';
+          foreach ($termList as $id => $term) {
+            $class = (Yii::$app->getRequest()->getQueryParam('IdTerminology') == $id) ? 'actual' : '';
             ?>
-            <li class="<?=$class?>"><a href="<?= Url::to(['/arboricultura/questions']); ?>&IdCategory=<?=$id?>">
-              <?= $category ?>
+            <li class="<?=$class?>"><a href="<?= Url::to(['/arboricultura/terminologia']); ?>&IdTerminology=<?=$id?>">
+              <?= $term ?>
             </a></li>
           <?php } ?>
         </ul>
@@ -33,22 +33,30 @@ $this->params['breadcrumbs'][] = $this->title;
       <div class="col-md-9 row">
 
         <?php
-        if (count($questions) == 0){ ?>
+        if (count($terms) == 0){ ?>
           <div class="no-record">;
             <h1 class="title">No se encontraron resultados. </h1><br />
             <img class="img-responsive" src="../../<?=Yii::$app->urlManagerBackend->baseUrl?>/noRecord.png"/>
           </div>
         <?php }else{
-          foreach ($questions as $question) {
+          foreach ($terms as $term) {
           ?>
             <div class="col-md-12">
-                <h2 class="title"><?= $question->Question ?></h2>
-                <?= $question->user->username ?>
+                <h2 class="title"><?= $term->Term ?></h2>
+                <div class="texto-desc">
+                  <img onclick="showImage(this)" class="little-image img-rounded img-responsive" src="../../<?=Yii::$app->urlManagerBackend->baseUrl?>/<?= $term->Photo ?>"/>
+                  <?= $term->Definition ?>
+                </div>
             </div>
         <?php
       }
     }
       ?>
+
+      <div id="imageModal" class="modal modal-image">
+        <span id="closeModal" class="close">&times;</span>
+        <img class="modal-content">
+      </div>
 
       </div>
     </div>
