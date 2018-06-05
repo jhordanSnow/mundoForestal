@@ -123,3 +123,32 @@ a.desc:after {
   padding: 10px 0px;
   border-bottom: 1px solid #cacaca;
 }
+
+.skin-green .main-header .navbar{
+  background-color: #008f44 !important;
+}
+
+ .skin-green .main-header .logo{
+   background-color: #006d32 !important;
+ }
+
+.logo img.logo-lg, .logo img.logo-mini{
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.sidebar-mini.sidebar-collapse .main-header .logo-mini {
+  margin: 0 !important;
+}
+a.logo-header{
+  padding: 5px 0 !important;
+}
+
+.content-wrapper{
+  background-color: #FFF !important;
+}
+
+.container-content{
+  padding: 25px;
+}

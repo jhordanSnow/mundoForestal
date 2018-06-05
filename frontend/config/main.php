@@ -36,6 +36,12 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManagerBackend' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => 'backend/web/Images/',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

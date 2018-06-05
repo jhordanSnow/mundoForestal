@@ -9,6 +9,8 @@ use Yii;
  *
  * @property int $IdCharacteristic
  * @property string $Name
+ *
+ * @property Plantcharacteristic[] $plantcharacteristics
  */
 class Characteristic extends \yii\db\ActiveRecord
 {
@@ -38,7 +40,15 @@ class Characteristic extends \yii\db\ActiveRecord
     {
         return [
             'IdCharacteristic' => 'Id Characteristic',
-            'Name' => 'Name',
+            'Name' => 'Característica',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPlantcharacteristics()
+    {
+        return $this->hasMany(Plantcharacteristic::className(), ['IdCharacteristic' => 'IdCharacteristic']);
     }
 }

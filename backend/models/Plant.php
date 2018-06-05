@@ -55,11 +55,11 @@ class Plant extends \yii\db\ActiveRecord
     {
         return [
             'IdPlant' => 'Id Plant',
-            'Name' => 'Name',
-            'ScientificName' => 'Scientific Name',
-            'IdType' => 'Id Type',
-            'IdFamily' => 'Id Family',
-            'Description' => 'Description',
+            'Name' => 'Nombre',
+            'ScientificName' => 'Nombre científico',
+            'IdType' => 'Tipo de planta',
+            'IdFamily' => 'Familia botánica',
+            'Description' => 'Descripción',
         ];
     }
 

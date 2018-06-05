@@ -300,4 +300,40 @@ return array (
       '@ramosisw/CImaterial' => $vendorDir . '/ramosisw/yii2-material-dashboard',
     ),
   ),
+  'romdim/yii2-bootstrap-material' => 
+  array (
+    'name' => 'romdim/yii2-bootstrap-material',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@romdim/bootstrap/material' => $vendorDir . '/romdim/yii2-bootstrap-material',
+    ),
+  ),
+  'kartik-v/yii2-dropdown-x' => 
+  array (
+    'name' => 'kartik-v/yii2-dropdown-x',
+    'version' => '1.2.0.0',
+    'alias' => 
+    array (
+      '@kartik/dropdown' => $vendorDir . '/kartik-v/yii2-dropdown-x',
+    ),
+  ),
+  'kartik-v/yii2-nav-x' => 
+  array (
+    'name' => 'kartik-v/yii2-nav-x',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik/nav' => $vendorDir . '/kartik-v/yii2-nav-x',
+    ),
+  ),
+  'kv4nt/yii2-owl-carousel2' => 
+  array (
+    'name' => 'kv4nt/yii2-owl-carousel2',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@kv4nt/owlcarousel' => $vendorDir . '/kv4nt/yii2-owl-carousel2',
+    ),
+  ),
 );

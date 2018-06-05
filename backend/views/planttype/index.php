@@ -7,29 +7,33 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\PlanttypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Planttypes';
+$this->title = 'Tipos de plantas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="planttype-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a('Create Planttype', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nuevo tipo de planta', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'options' => [
+                'style'=>'overflow: auto; word-wrap: break-word;'
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'IdType',
             'Name',
-            'Description:ntext',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+              'label' => 'Descripción',
+              'attribute' => 'Description',
+              'value' => function($model){ return ($model->Description == null) ? '' : substr($model->Description, 0, 420).' ...'; },
+            ],
+            [
+              'class' => 'yii\grid\ActionColumn',
+              'template' => '{update} {delete}'
+            ],
         ],
     ]); ?>
 </div>

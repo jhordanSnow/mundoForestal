@@ -91,9 +91,11 @@ class PlantController extends Controller
           }
           if ($commit){
             $transaction->commit();
+            Yii::$app->session->setFlash('success', 'Planta creada correctamente.');
             return $this->redirect(['update', 'id' => $model->IdPlant]);
           }else{
             $transaction->rollback();
+            Yii::$app->session->setFlash('success', 'Ocurrio un error al crear la planta.');
           }
         }
 
@@ -182,9 +184,11 @@ class PlantController extends Controller
           }
           if ($commit){
             $transaction->commit();
+            Yii::$app->session->setFlash('success', 'Planta actualizada correctamente.');
             return $this->redirect(['update', 'id' => $model->IdPlant]);
           }else{
             $transaction->rollback();
+            Yii::$app->session->setFlash('success', 'Ocurrio un error al actualizar la planta.');
             return $this->redirect(['index']);
           }
         }
@@ -208,9 +212,17 @@ class PlantController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+      $model = $this->findModel($id);
+      $photos = ArrayHelper::map($model->photos, 'IdPhoto', 'Photo');
+      if ($model->delete()){
+        foreach ($photos as $photo) {
+          unlink(Yii::getAlias('@backend'). '/web/Images/'.$photo);
+        }
+        Yii::$app->session->setFlash('success', 'Planta eleminada correctamente.');
+      }else{
+        Yii::$app->session->setFlash('error', 'Ocurrió un error al eliminar la planta.');
+      }
+      return $this->redirect(['index']);
     }
 
     /**

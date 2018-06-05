@@ -18,7 +18,7 @@ class PlantSearch extends Plant
     public function rules()
     {
         return [
-            [['IdPlant', 'IdFamily'], 'integer'],
+            [['IdPlant', 'IdFamily', 'IdType'], 'integer'],
             [['Name', 'ScientificName', 'Description'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class PlantSearch extends Plant
         // grid filtering conditions
         $query->andFilterWhere([
             'IdPlant' => $this->IdPlant,
+            'IdType' => $this->IdType,
             'IdFamily' => $this->IdFamily,
         ]);
 

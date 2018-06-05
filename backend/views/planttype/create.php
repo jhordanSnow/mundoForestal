@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Planttype */
 
-$this->title = 'Create Planttype';
-$this->params['breadcrumbs'][] = ['label' => 'Planttypes', 'url' => ['index']];
+$this->title = 'Nuevo Tipo de planta';
+$this->params['breadcrumbs'][] = ['label' => 'Tipos de plantas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="planttype-create">

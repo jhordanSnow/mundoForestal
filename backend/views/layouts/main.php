@@ -5,6 +5,10 @@ use yii\helpers\Html;
 /* @var $content string */
 
 
+if (class_exists('yii\debug\Module')) {
+    $this->off(\yii\web\View::EVENT_END_BODY, [\yii\debug\Module::getInstance(), 'renderToolbar']);
+}
+
 if (Yii::$app->controller->action->id === 'login') {
 /**
  * Do not use this code in your template. Remove it.
@@ -36,7 +40,7 @@ if (Yii::$app->controller->action->id === 'login') {
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition skin-green sidebar-mini">
     <?php $this->beginBody() ?>
     <div class="wrapper">
 

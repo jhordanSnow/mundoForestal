@@ -7,16 +7,12 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\CharacteristicSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Characteristics';
+$this->title = 'Características';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="characteristic-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a('Create Characteristic', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nueva característica', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,11 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'IdCharacteristic',
             'Name',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+              'class' => 'yii\grid\ActionColumn',
+              'template' => '{update} {delete}'
+            ],
         ],
     ]); ?>
 </div>

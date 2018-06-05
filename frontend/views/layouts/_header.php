@@ -1,46 +1,51 @@
 <?php
-
-use hiqdev\themes\flat\widgets\Menu;
-
+use yii\bootstrap\Nav;
+use yii\helpers\Url;
+use yii\helpers\Html;
 ?>
-<header class="navbar navbar-inverse navbar-fixed-top wet-asphalt" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only"><?= Yii::t('hiqdev/themes/flat', 'Toggle navigation') ?></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <?= Yii::$app->get('menuManager')->render('main', [
-                'class' => Menu::class,
-                'options' => ['class' => 'nav navbar-nav navbar-right'],
-            ]) ?>
-        </div>
+<div class="navbar navbar-logo">
+  <div class="w3-agile-logo">
+    <div class="row">
+      <div class="col-md-3 logo-container">
+        <a href="<?=Url::toRoute('/site/index')?>">
+          <img src="<?= Yii::$app->request->baseUrl . '/images/logo_thin.png' ?>" class=" img-responsive logo-thin" >
+        </a>
+      </div>
+      <div class="col-md-9">
+        <?php
+        $menuItems = [
+            ['label' => 'Inicio', 'url' => ['/site/index']],
+            ['label' => 'Quienes somos', 'url' => ['/site/about']],
+            ['label' => 'Arboricultura', 'items' => [
+                    ['label' => 'Arboricultor', 'url' => ['/arboricultura/arboricultor']],
+                    ['label' => 'Cazadores de carbono', 'url' => ['/arboricultura/cazadores-de-carbono']],
+                    ['label' => 'La chaya', 'url' => ['/arboricultura/la-chaya']],
+                    ['label' => 'Filatelia', 'url' => ['/arboricultura/filatelia']],
+                    ['label' => 'Pitahaya', 'url' => ['/arboricultura/pitahaya']],
+                    ['label' => 'Terminología', 'url' => ['/arboricultura/terminologia']],
+                    ['label' => 'Links', 'url' => ['/arboricultura/links']],
+                ],
+            ],
+            ['label' => 'Consultorio forestal', 'url' => ['/arboricultura/questions']],
+        ];
+        if (Yii::$app->user->isGuest) {
+            $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+            $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        } else {
+            $menuItems[] = ['label' => 'Contacto', 'url' => ['/site/contact']];
+            $menuItems[] = ['label' => 'Logout (' . Yii::$app->user->identity->username . ')', 'url' => '#','options'=>['id'=>'a-logout']];
+            $menuItems[] = '<li class="hidden">'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton('',['class' => 'btn btn-link logout', 'id' => 'btn-logout'])
+                . Html::endForm()
+                . '</li>';
+        }
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => $menuItems,
+        ]);
+        ?>
+      </div>
     </div>
-</header>
-
-<?php if (!isset($this->params['noTitle'])) : ?>
-    <section id="title" class="emerald">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h1><?= $this->title ?></h1>
-                    <?php if (isset($this->params['subtitle'])) : ?>
-                        <p><?= $this->params['subtitle'] ?></p>
-                    <?php endif ?>
-                </div>
-                <div class="col-sm-6">
-                    <?= Yii::$app->themeManager->widget([
-                        'class' => 'Breadcrumbs',
-                        'options' => ['class' => 'breadcrumb pull-right'],
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    ]) ?>
-                </div>
-            </div>
-        </div>
-    </section>
-<?php endif ?>
+  </div>
+</div>

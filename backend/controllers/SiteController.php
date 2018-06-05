@@ -6,6 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use backend\models\User;
 
 /**
  * Site controller
@@ -60,7 +61,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->redirect(['question/index']);
     }
 
     /**
@@ -75,15 +76,23 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
+        if (Yii::$app->request->isPost){
+          if ($model->load(Yii::$app->request->post()) && $user = User::find()->where(['username' => $model->username])->one()) {
+            if ($user->admin && $model->login()) {
+              return $this->goBack();
+            }else{
+              Yii::$app->session->setFlash('error', 'Ocurrió un error al iniciar sesión.');
+              $model->password = '';
+            }
+          } else {
+            Yii::$app->session->setFlash('error', 'Ocurrió un error al iniciar sesión.');
             $model->password = '';
-
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+          }
         }
+
+        return $this->render('login', [
+          'model' => $model,
+        ]);
     }
 
     /**

@@ -1,31 +1,40 @@
 <?php
 
-/**
- * Theme main layout.
- *
- * @var \yii\web\View View
- * @var string $content Content
- */
- if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
-     ramosisw\CImaterial\web\MaterialAsset::register($this);
- }
+/* @var $this \yii\web\View */
+/* @var $content string */
+
+use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
+use common\widgets\Alert;
+use frontend\assets\AppAsset;
+
+if (class_exists('yii\debug\Module')) {
+    $this->off(\yii\web\View::EVENT_END_BODY, [\yii\debug\Module::getInstance(), 'renderToolbar']);
+}
+
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <?= $this->render('//layouts/_head') ?>
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?= Html::csrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?= $this->render('_header.php',['directoryAsset' => $this]) ?>
 
-<?= $this->render('//layouts/_before_header') ?>
-<?= $this->render('//layouts/_header') ?>
-<?= $this->render('//layouts/_after_header') ?>
-<?= $this->render('//layouts/_content', compact('content')) ?>
-<?= $this->render('//layouts/_after_content') ?>
-<?= $this->render('//layouts/_footer') ?>
-<?= $this->render('//layouts/_after_footer') ?>
+<div class="wrap">
+    <?= $content ?>
+</div>
+
+<?= $this->render('_footer.php',['directoryAsset' => $this]) ?>
+
 
 <?php $this->endBody() ?>
 </body>

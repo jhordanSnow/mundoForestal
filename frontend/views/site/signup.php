@@ -7,29 +7,43 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Signup';
+$this->title = 'Registrarse';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to signup:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-
-                <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
-                <?= $form->field($model, 'lastname')->textInput(['autofocus' => true]) ?>
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-                <?= $form->field($model, 'email') ?>
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
+  <div class="container container-text">
+    <div class="site-about">
+      <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+          <h1 class="title"><?= Html::encode($this->title) ?></h1>
         </div>
+        <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+        <div class="row">
+          <div class="col-md-6">
+            <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
+          </div>
+          <div class="col-md-6">
+            <?= $form->field($model, 'lastname')->textInput(['autofocus' => true]) ?>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+          </div>
+          <div class="col-md-6">
+            <?= $form->field($model, 'email') ?>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <?= $form->field($model, 'password')->passwordInput() ?>
+          </div>
+        </div>
+        <div class="form-group">
+            <?= Html::submitButton('Registrarse', ['class' => 'btn btn-success', 'name' => 'signup-button']) ?>
+        </div>
+        <?php ActiveForm::end(); ?>
+      </div>
     </div>
+  </div>
 </div>

@@ -34,6 +34,7 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         ),
         'r' => 
         array (
+            'romdim\\bootstrap\\material\\' => 26,
             'rmrevin\\yii\\fontawesome\\' => 24,
             'ramosisw\\CImaterial\\' => 20,
         ),
@@ -43,6 +44,7 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         ),
         'k' => 
         array (
+            'kv4nt\\owlcarousel\\' => 18,
             'kartik\\widgets\\' => 15,
             'kartik\\typeahead\\' => 17,
             'kartik\\touchspin\\' => 17,
@@ -55,9 +57,11 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
             'kartik\\range\\' => 13,
             'kartik\\plugins\\fileinput\\' => 25,
             'kartik\\plugins\\depdrop\\' => 23,
+            'kartik\\nav\\' => 11,
             'kartik\\growl\\' => 13,
             'kartik\\form\\' => 12,
             'kartik\\file\\' => 12,
+            'kartik\\dropdown\\' => 16,
             'kartik\\depdrop\\' => 15,
             'kartik\\datetime\\' => 16,
             'kartik\\date\\' => 12,
@@ -164,6 +168,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         array (
             0 => __DIR__ . '/..' . '/wbraganca/yii2-dynamicform',
         ),
+        'romdim\\bootstrap\\material\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/romdim/yii2-bootstrap-material',
+        ),
         'rmrevin\\yii\\fontawesome\\' => 
         array (
             0 => __DIR__ . '/..' . '/rmrevin/yii2-fontawesome',
@@ -177,6 +185,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'kv4nt\\owlcarousel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kv4nt/yii2-owl-carousel2',
         ),
         'kartik\\widgets\\' => 
         array (
@@ -226,6 +238,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         array (
             0 => __DIR__ . '/..' . '/kartik-v/dependent-dropdown',
         ),
+        'kartik\\nav\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-nav-x',
+        ),
         'kartik\\growl\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-growl',
@@ -237,6 +253,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'kartik\\file\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-fileinput',
+        ),
+        'kartik\\dropdown\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-dropdown-x',
         ),
         'kartik\\depdrop\\' => 
         array (

@@ -2,21 +2,20 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use backend\models\Planttype;
+use backend\models\Botanicalfamily;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\PlantSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Plants';
+$this->title = 'Plantas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="plant-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a('Create Plant', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nueva Planta', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,14 +23,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'IdPlant',
             'Name',
             'ScientificName',
-            'IdFamily',
-            'Description:ntext',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+              'label' => 'Familia botánica',
+              'attribute' => 'IdFamily',
+              'value' => 'family.Name',
+              'filter'=> ArrayHelper::map(BotanicalFamily::find()->asArray()->all(), 'IdFamily', 'Name'),
+            ],
+            [
+              'label' => 'Tipo de planta',
+              'attribute' => 'IdType',
+              'value' => 'type.Name',
+              'filter'=> ArrayHelper::map(PlantType::find()->asArray()->all(), 'IdType', 'Name'),
+            ],
+            [
+              'class' => 'yii\grid\ActionColumn',
+              'template' => '{update} {delete}'
+            ],
         ],
     ]); ?>
 </div>

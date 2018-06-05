@@ -1,53 +1,54 @@
 <?php
 
-/* @var $this yii\web\View */
+use yii\helpers\Url;
 
-$this->title = 'My Yii Application';
+$this->title = 'Mundo Forestal';
 ?>
-<div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+<div class="header-outs">
+  <!-- Slideshow 4 -->
+  <div class="slider">
+    <div class="callbacks_container">
+      <ul class="rslides" id="slider4">
+        <li>
+          <div class="slider-img">
+            <div class="container">
+              <div class="slider-info">
+                <h4>
+                  <i>No podemos cuidar algo si no lo conocemos</i>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
+    <div class="clearfix"> </div>
+  </div>
+</div>
 
-    <div class="body-content">
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+<div class="services" id="services">
+  <div class="container">
+    <h1 style="text-align: center;">Árboles de Costa Rica y Educación Forestal</h1>
+    <div class="block-padding row">
+      <?php foreach ($treeTypes as $tree) { ?>
+        <div class="col-md-4  col-sm-4 col-xs-4">
+          <a href="<?=Url::toRoute(['/arboricultura/search-plant', 'IdType' => $tree->IdType])?>">
+          <div class="white-shadow">
+              <h2 class="title" style="text-align: center;"><?= $tree['Name'] ?></h2>
+              <br />
+              <?php
+              try{
+                echo '<img class="image-type img-responsive" src="../../'.Yii::$app->urlManagerBackend->baseUrl.'/'.$tree->plants[0]->photos[0]->Photo.'"/>';
+              }catch(Exception $e){
+                echo '<img class="img-responsive" src="../../'.Yii::$app->urlManagerBackend->baseUrl.'/noImage.png"/>';
+              }
+              ?>
             </div>
         </div>
-
+      </a>
+      <?php } ?>
+      <div class="clearfix"> </div>
     </div>
+  </div>
 </div>

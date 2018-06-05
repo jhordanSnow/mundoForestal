@@ -1,21 +1,10 @@
 <?php
-
-use hiqdev\themes\flat\widgets\Menu;
-
+use yii\helpers\Html;
 ?>
-<footer id="footer" class="midnight-blue">
+
+<footer class="footer">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                &copy; <?= Yii::$app->themeManager->widget('CopyrightYears') ?> <?= Yii::$app->themeManager->widget('OrganizationLink') ?>.
-                <?= Yii::t('hiqdev/themes/flat', 'All rights reserved.') ?>
-            </div>
-            <div class="col-sm-6">
-                <?= Yii::$app->get('menuManager')->render('main', [
-                    'class' => Menu::class,
-                    'options' => ['class' => 'navbar-right'],
-                ]) ?>
-            </div>
-        </div>
+        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+        <p class="pull-right"><a href="https://www.facebook.com/ElMundoForestal/"><span class="fa fa-facebook"></span></a></p>
     </div>
 </footer>

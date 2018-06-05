@@ -66,8 +66,13 @@ class PlanttypeController extends Controller
     {
         $model = new Planttype();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdType]);
+        if ($model->load(Yii::$app->request->post())) {
+          if ($model->save()){
+            Yii::$app->session->setFlash('success', 'Tipo de planta creado correctamente.');
+            return $this->redirect(['index']);
+          }else{
+            Yii::$app->session->setFlash('error', 'Ocurrió un error al crear el tipo de planta.');
+          }
         }
 
         return $this->render('create', [
@@ -87,7 +92,12 @@ class PlanttypeController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdType]);
+          if ($model->save()){
+            Yii::$app->session->setFlash('success', 'Tipo de planta actualizado correctamente.');
+            return $this->redirect(['index']);
+          }else{
+            Yii::$app->session->setFlash('error', 'Ocurrió un error al actualizar el tipo de planta.');
+          }
         }
 
         return $this->render('update', [
@@ -104,9 +114,15 @@ class PlanttypeController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+      $model = $this->findModel($id);
+      if (count($model->plants) == 0){
+        $model->delete();
+        Yii::$app->session->setFlash('success', 'Tipo de planta eleminado correctamente.');
+      }else{
+        Yii::$app->session->setFlash('error', 'Ocurrió un error al eliminar el tipo de planta.');
+      }
 
-        return $this->redirect(['index']);
+      return $this->redirect(['index']);
     }
 
     /**

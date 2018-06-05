@@ -1,25 +1,3 @@
-var poly = new google.maps.Polyline({
-  strokeColor: '#000000',
-  strokeOpacity: 1.0,
-  strokeWeight: 3
-});
-//poly.setMap(google.maps.Map);
-
-function fnCaca(event){
-  var path = poly.getPath();
-
-        // Because path is an MVCArray, we can simply append a new coordinate
-        // and it will automatically appear.
-        path.push(event.latLng);
-
-        // Add a new marker at the new plotted point on the polyline.
-        var marker = new google.maps.Marker({
-          position: event.latLng,
-          title: '#' + path.getLength(),
-          map: google.maps.Map,
-        });
-}
-
 function caca(){
   var valuePrint = $("#valor_add").val();
   var idChar = $("#characteristic_id").val();
@@ -53,9 +31,51 @@ function AddToSelect(text, id, selected){
   $("#characteristic_id").val(id).trigger("change");
 }
 
+
+
 $(function () {
+
+    var poly;
+    var map;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 7,
+        center: {lat: 41.879, lng: -87.624}
+      });
+
+      poly = new google.maps.Polyline({
+        strokeColor: '#000000',
+        strokeOpacity: 1.0,
+        strokeWeight: 3
+      });
+      poly.setMap(map);
+
+      map.addListener('click', addLatLng);
+    }
+
+    function addLatLng(event) {
+      var path = poly.getPath();
+      path.push(event.latLng);
+
+      var marker = new google.maps.Marker({
+        position: event.latLng,
+        title: '#' + path.getLength(),
+        map: map
+      });
+    }
+
+
+
     var inputLocalFont = document.getElementById("uploadFiles");
-    inputLocalFont.addEventListener("change", previewImages, false);
+    if (inputLocalFont){
+      inputLocalFont.addEventListener("change", previewImages, false);
+    }
+
+    var uploadAnswer = document.getElementById("uploadAnswer");
+    if (uploadAnswer){
+      uploadAnswer.addEventListener("change", previewAnswer, false);
+    }
 
     function previewImages() {
         var fileList = this.files;
@@ -78,6 +98,11 @@ $(function () {
         $(inputLocalFont).hide();
         inputLocalFont = $('<input type="file" id="uploadFiles" class="pull-right" accept=".jpg,.jpeg,.png" name="Photo[photos][]" value="" multiple="">').appendTo("#filecontainer").get(0);
         inputLocalFont.addEventListener("change", previewImages, false);
+    }
+    function previewAnswer(){
+      var anyWindow = window.URL || window.webkitURL;
+      var objectUrl = anyWindow.createObjectURL(this.files[0]);
+      $("#imageTarget").attr('src',objectUrl);
     }
 });
 

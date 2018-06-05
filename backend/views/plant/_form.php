@@ -14,6 +14,7 @@ use dosamigos\google\maps\Event;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Plant */
 /* @var $form yii\widgets\ActiveForm */
+/*
 $coord = new LatLng(['lat' => 9.9333300, 'lng' => -84.0833300]);
 $coords = [];
 $map = new Map([
@@ -28,7 +29,9 @@ $map = new Map([
 
 $event = new Event(["trigger"=>"click","js"=>"fnCaca(this)"]);
 $map->addEvent($event);
+*/
 ?>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLdDhNt31pcSqQ2D4g6A0yecm6HrGAkjI&callback=initMap"></script>
 <?php $form = ActiveForm::begin(); ?>
 <div class="plant-form">
   <div class="panel-group">
@@ -44,7 +47,7 @@ $map->addEvent($event);
             ]); ?>
             <?= $form->field($model, 'IdType')->widget(Select2::classname(), [
               'data' => $typeList,
-              'options' => ['placeholder' => 'Seleccione una familia botánica'],
+              'options' => ['placeholder' => 'Seleccione un tipo de planta'],
             ]); ?>
             <?= $form->field($model, 'Description')->textarea(['rows' => 18]) ?>
             <div class="form-group">
@@ -108,7 +111,8 @@ $map->addEvent($event);
         </div>
         <div class="panel panel-default">
           <div class="panel-body">
-            <?= $map->display(); ?>
+            <div id="map"></div>
+            <!--//$map->display();  -->
           </div>
         </div>
       </div>
@@ -134,5 +138,5 @@ $map->addEvent($event);
       </div>
     </div>
   </div>
-</div
+</div>
 <?php ActiveForm::end(); ?>

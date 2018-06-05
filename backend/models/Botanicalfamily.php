@@ -9,6 +9,8 @@ use Yii;
  *
  * @property int $IdFamily
  * @property string $Name
+ *
+ * @property Plant[] $plants
  */
 class Botanicalfamily extends \yii\db\ActiveRecord
 {
@@ -38,7 +40,15 @@ class Botanicalfamily extends \yii\db\ActiveRecord
     {
         return [
             'IdFamily' => 'Id Family',
-            'Name' => 'Name',
+            'Name' => 'Familia botánica',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPlants()
+    {
+        return $this->hasMany(Plant::className(), ['IdFamily' => 'IdFamily']);
     }
 }

@@ -66,8 +66,13 @@ class CharacteristicController extends Controller
     {
         $model = new Characteristic();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdCharacteristic]);
+        if ($model->load(Yii::$app->request->post())) {
+          if ( $model->save()){
+            Yii::$app->session->setFlash('success', 'Característica creada correctamente.');
+            return $this->redirect(['index']);
+          }else{
+            Yii::$app->session->setFlash('error', 'Ocurrió un error al crear la característica.');
+          }
         }
 
         return $this->render('create', [
@@ -86,8 +91,13 @@ class CharacteristicController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdCharacteristic]);
+        if ($model->load(Yii::$app->request->post())) {
+          if ($model->save()){
+            Yii::$app->session->setFlash('success', 'Característica actualizada correctamente.');
+            return $this->redirect(['index']);
+          }else{
+            Yii::$app->session->setFlash('error', 'Ocurrió un error al actualizar la característica.');
+          }
         }
 
         return $this->render('update', [
@@ -104,7 +114,13 @@ class CharacteristicController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+      $model = $this->findModel($id);
+      if (count($model->plantcharacteristics) == 0){
+        $model->delete();
+        Yii::$app->session->setFlash('success', 'Característica eleminada correctamente.');
+      }else{
+        Yii::$app->session->setFlash('error', 'Ocurrió un error al eliminar la característica.');
+      }
 
         return $this->redirect(['index']);
     }

@@ -42,8 +42,8 @@ class Planttype extends \yii\db\ActiveRecord
     {
         return [
             'IdType' => 'Id Type',
-            'Name' => 'Name',
-            'Description' => 'Description',
+            'Name' => 'Tipo',
+            'Description' => 'Descripción',
         ];
     }
 

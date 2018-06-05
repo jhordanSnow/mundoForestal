@@ -66,8 +66,13 @@ class BotanicalFamilyController extends Controller
     {
         $model = new BotanicalFamily();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdFamily]);
+        if ($model->load(Yii::$app->request->post())) {
+          if ($model->save()){
+            Yii::$app->session->setFlash('success', 'Familia botánica creada correctamente.');
+            return $this->redirect(['index']);
+          }else{
+            Yii::$app->session->setFlash('error', 'Ocurrió un error al crear la familia botánica.');
+          }
         }
 
         return $this->render('create', [
@@ -86,8 +91,13 @@ class BotanicalFamilyController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdFamily]);
+        if ($model->load(Yii::$app->request->post())) {
+          if ($model->save()){
+            Yii::$app->session->setFlash('success', 'Familia botánica actualizada correctamente.');
+            return $this->redirect(['index']);
+          }else{
+            Yii::$app->session->setFlash('error', 'Ocurrió un error al actualizar la familia botánica.');
+          }
         }
 
         return $this->render('update', [
@@ -104,9 +114,15 @@ class BotanicalFamilyController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+      $model = $this->findModel($id);
+      if (count($model->plants) == 0){
+        $model->delete();
+        Yii::$app->session->setFlash('success', 'Familia botánica eleminada correctamente.');
+      }else{
+        Yii::$app->session->setFlash('error', 'Ocurrió un error al eliminar la familia botánica.');
+      }
 
-        return $this->redirect(['index']);
+      return $this->redirect(['index']);
     }
 
     /**

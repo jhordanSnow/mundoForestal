@@ -13,6 +13,11 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
+use yii\helpers\ArrayHelper;
+
+use backend\models\Planttype;
+use backend\models\Question;
+use backend\models\QuestionCategory;
 /**
  * Site controller
  */
@@ -72,7 +77,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $treeTypes = Planttype::find()->all();
+        return $this->render('index', [
+          'treeTypes' => $treeTypes
+        ]);
     }
 
     /**
@@ -117,18 +125,21 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
-            }
+        $model = new Question();
+        $dataCategory = ArrayHelper::map(QuestionCategory::find()->all(),'IdCategory', 'Name');
+        $model->IdUser = Yii::$app->user->identity->id;
 
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Gracias por contactarnos, le estaremos respondiendo lo mas pronto.');
+            } else {
+                Yii::$app->session->setFlash('error', 'Hubo un error al guardar la consulta.');
+            }
             return $this->refresh();
         } else {
             return $this->render('contact', [
                 'model' => $model,
+                'categoryList' => $dataCategory,
             ]);
         }
     }

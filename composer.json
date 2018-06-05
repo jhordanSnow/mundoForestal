@@ -24,7 +24,10 @@
         "kartik-v/yii2-widgets": "*",
         "hiqdev/yii2-theme-flat": "^0.0.1",
         "ramosisw/yii2-material-dashboard": "dev-master",
-        "2amigos/yii2-google-maps-library": "*"
+        "2amigos/yii2-google-maps-library": "*",
+        "romdim/yii2-bootstrap-material": "dev-master",
+        "kartik-v/yii2-nav-x": "dev-master",
+        "kv4nt/yii2-owl-carousel2": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
