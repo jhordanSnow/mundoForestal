@@ -8,7 +8,7 @@ use backend\models\CharacteristicSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\data\ActiveDataProvider;
 /**
  * CharacteristicController implements the CRUD actions for Characteristic model.
  */
@@ -37,6 +37,10 @@ class CharacteristicController extends Controller
     {
         $searchModel = new CharacteristicSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $dataProvider->query,
+            'pagination' => [ 'pageSize' => 5 ],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

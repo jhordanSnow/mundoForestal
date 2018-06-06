@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
 
 /**
  * TerminologyController implements the CRUD actions for Terminology model.
@@ -38,6 +39,11 @@ class TerminologyController extends Controller
     {
         $searchModel = new TerminologySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $dataProvider->query,
+            'pagination' => [ 'pageSize' => 5 ],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

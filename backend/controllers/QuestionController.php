@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
-
+use yii\data\ActiveDataProvider;
 use backend\models\Answer;
 
 /**
@@ -90,6 +90,10 @@ class QuestionController extends Controller
     {
         $searchModel = new QuestionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $dataProvider->query,
+            'pagination' => [ 'pageSize' => 5],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

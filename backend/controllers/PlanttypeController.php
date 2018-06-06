@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use yii\data\ActiveDataProvider;
+
 /**
  * PlanttypeController implements the CRUD actions for Planttype model.
  */
@@ -37,6 +39,10 @@ class PlanttypeController extends Controller
     {
         $searchModel = new PlanttypeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $dataProvider->query,
+            'pagination' => [ 'pageSize' => 5],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

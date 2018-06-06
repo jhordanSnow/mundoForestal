@@ -8,6 +8,7 @@ use backend\models\QuestionCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * QuestionCategoryController implements the CRUD actions for QuestionCategory model.
@@ -37,6 +38,10 @@ class QuestionCategoryController extends Controller
     {
         $searchModel = new QuestionCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $dataProvider->query,
+            'pagination' => [ 'pageSize' => 5],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

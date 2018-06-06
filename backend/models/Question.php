@@ -13,6 +13,7 @@ use Yii;
  * @property string $Question
  * @property int $state
  *
+ * @property Answer[] $answers
  * @property User $user
  * @property Questioncategory $category
  */
@@ -52,6 +53,14 @@ class Question extends \yii\db\ActiveRecord
             'Question' => 'Question',
             'state' => 'State',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAnswers()
+    {
+        return $this->hasMany(Answer::className(), ['IdQuestion' => 'IdQuestion']);
     }
 
     /**

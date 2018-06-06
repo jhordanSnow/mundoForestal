@@ -41,10 +41,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php }else{
           foreach ($questions as $question) {
           ?>
-            <div class="col-md-12">
-                <h2 class="title"><?= $question->Question ?></h2>
-                <?= $question->user->username ?>
+          <div class="col-md-12 row-term">
+            <div class="question-desc">
+              <?= $question->Question ?> <br />
+              - <?= $question->user->name ?> <?= $question->user->lastname ?>
             </div>
+            <div class="answer-desc texto-desc">
+              <?php if (count($question->answers)){ ?>
+                <img onclick="showImage(this)" class="little-image img-rounded img-responsive" src="../../<?=Yii::$app->urlManagerBackend->baseUrl?>/<?= $question->answers[0]->Photo ?>"/>
+                <b>Respuesta:</b> <?= nl2br($question->answers[0]->Answer) ?>
+              <?php } ?>
+            </div>
+          </div>
         <?php
       }
     }
@@ -54,4 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <?= LinkPager::widget(['pagination' => $pages]); ?>
   </div>
+</div>
+<div id="imageModal" class="modal modal-image">
+  <span id="closeModal" class="close">&times;</span>
+  <img class="modal-content">
 </div>

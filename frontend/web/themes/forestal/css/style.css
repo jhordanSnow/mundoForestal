@@ -2023,3 +2023,11 @@ h2.title{
 .texto-desc{
   padding: 15px;
 }
+
+.row-term{
+  padding:20px 10px;border-bottom: 1px solid #cacaca;
+}
+
+.question-desc{
+  color: #006d32;
+}

@@ -14,7 +14,7 @@ use dosamigos\google\maps\Event;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Plant */
 /* @var $form yii\widgets\ActiveForm */
-/*
+
 $coord = new LatLng(['lat' => 9.9333300, 'lng' => -84.0833300]);
 $coords = [];
 $map = new Map([
@@ -29,7 +29,7 @@ $map = new Map([
 
 $event = new Event(["trigger"=>"click","js"=>"fnCaca(this)"]);
 $map->addEvent($event);
-*/
+
 ?>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLdDhNt31pcSqQ2D4g6A0yecm6HrGAkjI&callback=initMap"></script>
 <?php $form = ActiveForm::begin(); ?>
@@ -112,7 +112,7 @@ $map->addEvent($event);
         <div class="panel panel-default">
           <div class="panel-body">
             <div id="map"></div>
-            <!--//$map->display();  -->
+            <?=$map->display(); ?>
           </div>
         </div>
       </div>

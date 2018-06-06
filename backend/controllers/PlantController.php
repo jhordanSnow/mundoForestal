@@ -16,6 +16,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
 
 /**
  * PlantController implements the CRUD actions for Plant model.
@@ -45,6 +46,10 @@ class PlantController extends Controller
     {
         $searchModel = new PlantSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $dataProvider->query,
+            'pagination' => [ 'pageSize' => 5],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

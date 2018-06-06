@@ -41,11 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php }else{
           foreach ($terms as $term) {
           ?>
-            <div class="col-md-12">
+            <div class="col-md-12 row-term">
                 <h2 class="title"><?= $term->Term ?></h2>
                 <div class="texto-desc">
                   <img onclick="showImage(this)" class="little-image img-rounded img-responsive" src="../../<?=Yii::$app->urlManagerBackend->baseUrl?>/<?= $term->Photo ?>"/>
-                  <?= $term->Definition ?>
+                  <?= nl2br($term->Definition) ?>
                 </div>
             </div>
         <?php

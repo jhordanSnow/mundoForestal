@@ -12,6 +12,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 use backend\models\UserSearch;
+use yii\data\ActiveDataProvider;
 
 /**
  * AdminController implements the CRUD actions for Admin model.
@@ -42,6 +43,10 @@ class AdminController extends Controller
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->query->innerJoinWith('admin', 'admin.IdUsuario = admin.id')->where(['<>','id',Yii::$app->user->identity->id]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $dataProvider->query,
+            'pagination' => [ 'pageSize' => 5 ],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
