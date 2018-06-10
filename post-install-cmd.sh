@@ -1,6 +1,5 @@
 #!/bin/sh
 if [ -n "$DYNO" ]  && [ -n "$ENV" ]; then
-    chmod -R 777 app/
     php init --env=$ENV --overwrite=All
     php yii migrate/up --interactive=0
     php yii cache/flush-all
