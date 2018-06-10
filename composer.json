@@ -54,9 +54,7 @@
     ],
     "scripts": {
         "post-install-cmd": [
-            "sh post-install-cmd.sh",
-            "chmod -R 777 frontend/web/",
-            "chmod -R 777 backend/web/",
+            "sh post-install-cmd.sh"
         ]
     }
 }
