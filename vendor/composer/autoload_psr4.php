@@ -17,6 +17,7 @@ return array(
     'romdim\\bootstrap\\material\\' => array($vendorDir . '/romdim/yii2-bootstrap-material'),
     'rmrevin\\yii\\fontawesome\\' => array($vendorDir . '/rmrevin/yii2-fontawesome'),
     'ramosisw\\CImaterial\\' => array($vendorDir . '/ramosisw/yii2-material-dashboard'),
+    'purrweb\\heroku\\' => array($vendorDir . '/purrweb/yii2-heroku'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'lo\\widgets\\modal\\' => array($vendorDir . '/loveorigami/yii2-modal-ajax/src'),
     'kv4nt\\owlcarousel\\' => array($vendorDir . '/kv4nt/yii2-owl-carousel2'),

@@ -40,6 +40,7 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         ),
         'p' => 
         array (
+            'purrweb\\heroku\\' => 15,
             'phpDocumentor\\Reflection\\' => 25,
         ),
         'l' => 
@@ -189,6 +190,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'ramosisw\\CImaterial\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramosisw/yii2-material-dashboard',
+        ),
+        'purrweb\\heroku\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/purrweb/yii2-heroku',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
