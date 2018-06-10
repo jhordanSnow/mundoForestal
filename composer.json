@@ -55,9 +55,8 @@
     "scripts": {
         "post-install-cmd": [
             "sh post-install-cmd.sh",
-            "php artisan clear-compiled",
-            "php artisan optimize",
-            "chmod -R 777 public/",
+            "chmod -R 777 frontend/web/",
+            "chmod -R 777 backend/web/",
         ]
     }
 }
