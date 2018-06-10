@@ -7,12 +7,13 @@ use Yii;
 /**
  * This is the model class for table "mapinformation".
  *
+ * @property int $IdMapInformation
  * @property int $IdPlant
  * @property string $Polygon
  *
  * @property Plant $plant
  */
-class MapInformation extends \yii\db\ActiveRecord
+class Mapinformation extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -30,8 +31,7 @@ class MapInformation extends \yii\db\ActiveRecord
         return [
             [['IdPlant', 'Polygon'], 'required'],
             [['IdPlant'], 'integer'],
-            [['Polygon'], 'string', 'max' => 255],
-            [['IdPlant'], 'unique'],
+            [['Polygon'], 'string'],
             [['IdPlant'], 'exist', 'skipOnError' => true, 'targetClass' => Plant::className(), 'targetAttribute' => ['IdPlant' => 'IdPlant']],
         ];
     }
@@ -42,6 +42,7 @@ class MapInformation extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'IdMapInformation' => 'Id Map Information',
             'IdPlant' => 'Id Plant',
             'Polygon' => 'Polygon',
         ];

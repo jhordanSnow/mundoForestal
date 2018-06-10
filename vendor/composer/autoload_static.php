@@ -42,6 +42,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'l' => 
+        array (
+            'lo\\widgets\\modal\\' => 17,
+        ),
         'k' => 
         array (
             'kv4nt\\owlcarousel\\' => 18,
@@ -58,6 +62,7 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
             'kartik\\plugins\\fileinput\\' => 25,
             'kartik\\plugins\\depdrop\\' => 23,
             'kartik\\nav\\' => 11,
+            'kartik\\markdown\\' => 16,
             'kartik\\growl\\' => 13,
             'kartik\\form\\' => 12,
             'kartik\\file\\' => 12,
@@ -80,6 +85,7 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'd' => 
         array (
             'dosamigos\\google\\maps\\' => 22,
+            'dosamigos\\ckeditor\\' => 19,
             'dmstr\\' => 6,
         ),
         'c' => 
@@ -106,6 +112,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
+        ),
+        'M' => 
+        array (
+            'Michelf\\' => 8,
         ),
         'G' => 
         array (
@@ -186,6 +196,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
+        'lo\\widgets\\modal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/loveorigami/yii2-modal-ajax/src',
+        ),
         'kv4nt\\owlcarousel\\' => 
         array (
             0 => __DIR__ . '/..' . '/kv4nt/yii2-owl-carousel2',
@@ -241,6 +255,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'kartik\\nav\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-nav-x',
+        ),
+        'kartik\\markdown\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-markdown/src',
         ),
         'kartik\\growl\\' => 
         array (
@@ -306,6 +324,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         array (
             0 => __DIR__ . '/..' . '/2amigos/yii2-google-maps-library',
         ),
+        'dosamigos\\ckeditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-ckeditor-widget/src',
+        ),
         'dmstr\\' => 
         array (
             0 => __DIR__ . '/..' . '/dmstr/yii2-adminlte-asset',
@@ -361,6 +383,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Michelf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/michelf/php-markdown/Michelf',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -422,6 +448,13 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+        ),
+        'M' => 
+        array (
+            'Michelf' => 
+            array (
+                0 => __DIR__ . '/..' . '/michelf/php-smartypants',
             ),
         ),
         'H' => 

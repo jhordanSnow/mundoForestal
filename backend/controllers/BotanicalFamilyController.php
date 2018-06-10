@@ -73,11 +73,21 @@ class BotanicalFamilyController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
           if ($model->save()){
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return ['success' => true, 'IdFamily' => $model->IdFamily, 'Name' => $model->Name];
+            }
             Yii::$app->session->setFlash('success', 'Familia botánica creada correctamente.');
             return $this->redirect(['index']);
           }else{
             Yii::$app->session->setFlash('error', 'Ocurrió un error al crear la familia botánica.');
           }
+        }
+
+        if (Yii::$app->request->isAjax) {
+          return $this->renderAjax('_form', [
+                'model' => $model,
+          ]);
         }
 
         return $this->render('create', [

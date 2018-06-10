@@ -71,7 +71,11 @@ class CharacteristicController extends Controller
         $model = new Characteristic();
 
         if ($model->load(Yii::$app->request->post())) {
-          if ( $model->save()){
+          if ($model->save()){
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return ['success' => true, 'IdCharacteristic' => $model->IdCharacteristic, 'Name' => $model->Name];
+            }
             Yii::$app->session->setFlash('success', 'Característica creada correctamente.');
             return $this->redirect(['index']);
           }else{
@@ -79,6 +83,11 @@ class CharacteristicController extends Controller
           }
         }
 
+        if (Yii::$app->request->isAjax) {
+          return $this->renderAjax('_form', [
+                'model' => $model,
+          ]);
+        }
         return $this->render('create', [
             'model' => $model,
         ]);

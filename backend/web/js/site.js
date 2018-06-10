@@ -8,7 +8,7 @@ function caca(){
   toPrint += '<input type="hidden" id="characteristic_value_desc_'+idChar+'" value="'+textChar+'">'
   toPrint += '<input type="hidden" name="PlantCharacteristic[IdCharacteristic][]" value="'+idChar+'">'
   toPrint += '<div class="col-md-11">'+textChar+': '+valuePrint+'</div>';
-  toPrint += '<div class="col-md-1"><span class="glyphicon glyphicon-remove" onclick="removeOption('+idChar+')" aria-hidden="true"></span></div>';
+  toPrint += '<div class="col-md-1"><span class="glyphicon glyphicon-edit" onclick="removeOption('+idChar+')" aria-hidden="true"></span></div>';
   toPrint += '</div>';
 
   $("#panel-characteristics").append(toPrint);
@@ -113,3 +113,9 @@ function deleteImage(object) {
     $("#uploadFilesNames").val(names);
     $(object).parent().remove();
 }
+
+$(function(){
+  $('.modalButton').click(function(){
+    $('.modal').modal('show').find('#modalContent').load($(this).attr('value'));
+  });
+});

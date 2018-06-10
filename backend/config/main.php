@@ -11,7 +11,16 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+      'markdown' => [
+        'class' => 'kartik\markdown\Module',
+    		'previewAction' => '/markdown/parse/preview',
+    		'customConversion' => [
+    			'<table>' => '<table class="table table-bordered table-striped">'
+    		],
+    		'smartyPants' => true
+    	]
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',

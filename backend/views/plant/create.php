@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'modelChar' => $modelChar,
         'modelPhoto' => $modelPhoto,
+        'modelMap' => $modelMap,
         'typeList' => $typeList,
         'familyList' => $familyList,
         'characteristicList' => $characteristicList

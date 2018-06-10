@@ -1,51 +1,12 @@
-jQuery(document).ready(function ($) {
-  $(".scroll").click(function (event) {
-    event.preventDefault();
-    $('html,body').animate({
-      scrollTop: $(this.hash).offset().top
-    }, 1000);
-  });
-});
-
-$(document).ready(function () {
-    $('.navbar a.dropdown-toggle').on('click', function (e) {
-        var $el = $(this);
-        var $parent = $(this).offsetParent(".dropdown-menu");
-        $(this).parent("li").toggleClass('open');
-
-        console.log(45, $parent.closest('.nav'));
-        if (!$parent.parent().hasClass('nav')) {
-            if ($parent.closest('.nav').hasClass('navbar-right')) {
-                console.log('aaa');
-                $el.next().css({"top": $el[0].offsetTop, "right": $parent.outerWidth() - 4});
-            } else {
-                console.log('bbb');
-                $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
-            }
-        }
-
-        $('.nav li.open').not($(this).parents("li")).removeClass("open");
-
-        return false;
-    });
-
-  $("#a-logout").click(function (){
-    $("#btn-logout").click();
-  })
-  $("#closeModal").click(function (){
-    $("#imageModal").hide();
-  })
-
+$("#a-logout").click(function (){
+  $("#btn-logout").click();
 })
 
-
-
-
 function showImage(obj){
+  $('#map').hide();
   var img = $(obj);
-  var modal = $("#imageModal");
-  var modalImg = $("#imageModal .modal-content");
+  var modal = $(".modal");
+  var modalImg = $("#modalContent");
 
-  modal.show();
-  modalImg.attr('src',img.attr('src'));
+  $('#modalMap').modal('show').find('#modalContent').html("<img src='"+img.attr('src')+"' />");
 }

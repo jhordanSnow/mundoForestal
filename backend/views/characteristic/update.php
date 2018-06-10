@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'Actualizar Característica';
 $this->params['breadcrumbs'][] = ['label' => 'Características', 'url' => ['index']];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Actualizar';
 ?>
 <div class="characteristic-update">
     <?= $this->render('_form', [

@@ -74,11 +74,21 @@ class PlanttypeController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
           if ($model->save()){
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return ['success' => true, 'IdType' => $model->IdType, 'Name' => $model->Name];
+            }
             Yii::$app->session->setFlash('success', 'Tipo de planta creado correctamente.');
             return $this->redirect(['index']);
           }else{
             Yii::$app->session->setFlash('error', 'Ocurrió un error al crear el tipo de planta.');
           }
+        }
+
+        if (Yii::$app->request->isAjax) {
+          return $this->renderAjax('_form', [
+                'model' => $model,
+          ]);
         }
 
         return $this->render('create', [

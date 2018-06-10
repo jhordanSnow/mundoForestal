@@ -32,7 +32,7 @@ class Photo extends \yii\db\ActiveRecord
     {
         return [
             [['Photo'], 'string', 'max' => 255],
-            [['photos'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 420],
+            [['photos'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 420],
 
         ];
     }

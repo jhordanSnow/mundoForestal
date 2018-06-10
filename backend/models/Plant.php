@@ -14,11 +14,10 @@ use Yii;
  * @property int $IdFamily
  * @property string $Description
  *
- * @property Mapinformation $mapinformation
+ * @property Mapinformation[] $mapinformations
  * @property Botanicalfamily $family
  * @property Planttype $type
  * @property Plantcharacteristic[] $plantcharacteristics
- * @property Characteristic[] $characteristics
  * @property Plantphoto[] $plantphotos
  * @property Photo[] $photos
  */
@@ -53,22 +52,22 @@ class Plant extends \yii\db\ActiveRecord
      */
     public function attributeLabels()
     {
-        return [
-            'IdPlant' => 'Id Plant',
-            'Name' => 'Nombre',
-            'ScientificName' => 'Nombre científico',
-            'IdType' => 'Tipo de planta',
-            'IdFamily' => 'Familia botánica',
-            'Description' => 'Descripción',
-        ];
+      return [
+          'IdPlant' => 'Id Plant',
+          'Name' => 'Nombre',
+          'ScientificName' => 'Nombre científico',
+          'IdType' => 'Tipo de planta',
+          'IdFamily' => 'Familia botánica',
+          'Description' => 'Descripción',
+      ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMapinformation()
+    public function getMapinformations()
     {
-        return $this->hasOne(Mapinformation::className(), ['IdPlant' => 'IdPlant']);
+        return $this->hasMany(Mapinformation::className(), ['IdPlant' => 'IdPlant']);
     }
 
     /**
@@ -93,14 +92,6 @@ class Plant extends \yii\db\ActiveRecord
     public function getPlantcharacteristics()
     {
         return $this->hasMany(Plantcharacteristic::className(), ['IdPlant' => 'IdPlant']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCharacteristics()
-    {
-        return $this->hasMany(Characteristic::className(), ['IdCharacteristic' => 'IdCharacteristic'])->viaTable('plantcharacteristic', ['IdPlant' => 'IdPlant']);
     }
 
     /**

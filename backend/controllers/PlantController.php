@@ -10,6 +10,7 @@ use backend\models\Characteristic;
 use backend\models\PlantCharacteristic;
 use backend\models\Photo;
 use backend\models\Planttype;
+use backend\models\MapInformation;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -79,6 +80,7 @@ class PlantController extends Controller
     {
         $model = new Plant();
         $modelChar = new PlantCharacteristic();
+        $modelMap = new MapInformation();
         $modelPhoto = new Photo();
 
         $characteristicData = ArrayHelper::map(Characteristic::find()->all(),'IdCharacteristic', 'Name');
@@ -92,7 +94,7 @@ class PlantController extends Controller
           if ($model->load(Yii::$app->request->post()) && $model->save()){
             (array_key_exists("PlantCharacteristic",$postValues)) ? $commit = $this->InsertCharacteristics($model->IdPlant, $postValues["PlantCharacteristic"]) : '';
             $commit = $this->InsertPhotos($modelPhoto, $model->IdPlant,explode(',',$postValues["uploadFilesNames"]));
-            //$commit = InsertGeolocation($postValues["Photos"]);
+            (array_key_exists("MapInformation",$postValues)) ? $commit = $this->InsertGeolocation($model->IdPlant, $postValues["MapInformation"]) : '';
           }
           if ($commit){
             $transaction->commit();
@@ -108,6 +110,7 @@ class PlantController extends Controller
             'model' => $model,
             'modelChar' => $modelChar,
             'modelPhoto' => $modelPhoto,
+            'modelMap' => $modelMap,
             'typeList' => $typeList,
             'familyList' => $familyList,
             'characteristicList' => $characteristicData
@@ -129,6 +132,26 @@ class PlantController extends Controller
         $listValues[$i] = [$listCharacteristics["Value"][$i], $listCharacteristics["IdCharacteristic"][$i], $idPlant];
       }
       if(Yii::$app->db->createCommand()->batchInsert("plantcharacteristic", ["Value", "IdCharacteristic", "IdPlant"], $listValues)->execute() <= 0){
+        $commit = false;
+      }
+      return $commit;
+    }
+
+    public function DeleteGeolocation($idPlant){
+      $commit = true;
+      if (!MapInformation::deleteAll(['IdPlant' => $idPlant])){
+        $commit = false;
+      }
+      return $commit;
+    }
+
+    public function InsertGeolocation($idPlant, $listMapInformation){
+      $commit = true;
+      $listValues = [];
+      for ($i=0; $i < count($listMapInformation["Polygon"]); $i++) {
+        $listValues[$i] = [$listMapInformation["Polygon"][$i], $idPlant];
+      }
+      if(Yii::$app->db->createCommand()->batchInsert("mapinformation", ["Polygon", "IdPlant"], $listValues)->execute() <= 0){
         $commit = false;
       }
       return $commit;
@@ -185,6 +208,9 @@ class PlantController extends Controller
             (array_key_exists("PlantCharacteristic", $postValues)) ? $commit = $this->InsertCharacteristics($model->IdPlant, $postValues["PlantCharacteristic"]) : '';
             $commit = $this->DeletePhotos($model, explode(',',$postValues["uploadFilesNames"]));
             $commit = $this->InsertPhotos($modelPhoto, $model->IdPlant,explode(',',$postValues["uploadFilesNames"]));
+
+            (count($model->mapinformations) > 0) ? $commit = $this->DeleteGeolocation($model->IdPlant) : '';
+            (array_key_exists("MapInformation",$postValues)) ? $commit = $this->InsertGeolocation($model->IdPlant, $postValues["MapInformation"]) : '';
             //$commit = InsertGeolocation($postValues["Photos"]);
           }
           if ($commit){

@@ -32,7 +32,7 @@ $this->title = 'Mundo Forestal';
     <h1 style="text-align: center;">Árboles de Costa Rica y Educación Forestal</h1>
     <div class="block-padding row">
       <?php foreach ($treeTypes as $tree) { ?>
-        <div class="col-md-4  col-sm-4 col-xs-4">
+        <div class="col-sm-4">
           <a href="<?=Url::toRoute(['/arboricultura/search-plant', 'IdType' => $tree->IdType])?>">
           <div class="white-shadow">
               <h2 class="title" style="text-align: center;"><?= $tree['Name'] ?></h2>

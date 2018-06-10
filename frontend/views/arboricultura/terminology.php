@@ -18,17 +18,30 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
       <div class="col-md-3">
         <?= Html::label('Términos', 'IdTerminology') ?>
-        <ul class="nav nav-tabs nav-stacked side-nav">
-          <li></li>
-          <?php
-          foreach ($termList as $id => $term) {
-            $class = (Yii::$app->getRequest()->getQueryParam('IdTerminology') == $id) ? 'actual' : '';
-            ?>
-            <li class="<?=$class?>"><a href="<?= Url::to(['/arboricultura/terminologia']); ?>&IdTerminology=<?=$id?>">
-              <?= $term ?>
-            </a></li>
-          <?php } ?>
-        </ul>
+        <?php $form = ActiveForm::begin(['id' => 'form-term','method' => 'get']) ?>
+        <?= Select2::widget([
+          'id' => 'IdTerminology',
+          'name' => 'IdTerminology',
+          'value' => Yii::$app->getRequest()->getQueryParam('IdTerminology'),
+          'data' => $termList,
+          'options' => ['placeholder' => 'Seleccione un término'],
+          'pluginOptions' => ['allowClear' => true],
+        ]); ?>
+        <?php ActiveForm::end(); ?>
+        <br />
+        <div class="container-terms" style="max-height: 420px;overflow: auto;">
+          <ul class="nav nav-tabs nav-stacked side-nav">
+            <li></li>
+            <?php
+            foreach ($termList as $id => $term) {
+              $class = (Yii::$app->getRequest()->getQueryParam('IdTerminology') == $id) ? 'actual' : '';
+              ?>
+              <li class="<?=$class?>"><a href="<?= Url::to(['/arboricultura/terminologia']); ?>&IdTerminology=<?=$id?>">
+                <?= $term ?>
+              </a></li>
+            <?php } ?>
+          </ul>
+        </div>
       </div>
       <div class="col-md-9 row">
 
@@ -60,6 +73,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
       </div>
     </div>
-    <?= LinkPager::widget(['pagination' => $pages]); ?>
+    <div class="pagination-container">
+      <?= LinkPager::widget(['pagination' => $pages]); ?>
+    </div>
   </div>
 </div>
+
+<?php
+
+$script = <<< JS
+
+$('#IdTerminology').change(function (){
+  $('#form-term').submit();
+})
+
+JS;
+
+$this->registerJS($script);
+?>

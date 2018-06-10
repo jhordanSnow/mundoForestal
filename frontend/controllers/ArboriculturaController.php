@@ -19,6 +19,7 @@ use backend\models\Terminology;
 use backend\models\QuestionCategory;
 use backend\models\Planttype;
 use backend\models\Botanicalfamily;
+use backend\models\Pagedata;
 
 use yii\data\Pagination;
 use yii\helpers\ArrayHelper;
@@ -75,6 +76,14 @@ class ArboriculturaController extends Controller
         ];
     }
 
+    public function actionMap($id){
+      $Plant = Plant::find()->where(['IdPlant' => $id])->one();
+
+      return $this->renderAjax('_map',[
+        'Plant' => $Plant,
+      ]);
+    }
+
     public function actionArboricultor(){
       return $this->render('arboricultor');
     }
@@ -83,10 +92,10 @@ class ArboriculturaController extends Controller
       $terms = Terminology::find();
       $terms->andFilterWhere([
           'and',
-          ['like', 'IdTerminology', Yii::$app->getRequest()->getQueryParam('IdTerminology')],
+          ['=', 'IdTerminology', Yii::$app->getRequest()->getQueryParam('IdTerminology')],
       ]);
       $countQuery = clone $terms;
-      $pages = new Pagination(['totalCount' => $terms->count(), 'pageSize' => 10]);
+      $pages = new Pagination(['totalCount' => $terms->count(), 'pageSize' => 3]);
       $models = $terms->offset($pages->offset)->limit($pages->limit)->all();
 
       $termList = ArrayHelper::map(Terminology::find()->all(),'IdTerminology', 'Term');
@@ -100,7 +109,7 @@ class ArboriculturaController extends Controller
 
     public function actionQuestions(){
 
-      $questions = Question::find();
+      $questions = Question::find()->where(['state' => 1]);
       $questions->andFilterWhere([
           'and',
           ['like', 'IdCategory', Yii::$app->getRequest()->getQueryParam('IdCategory')],
@@ -129,7 +138,7 @@ class ArboriculturaController extends Controller
           ['like', 'IdType', Yii::$app->getRequest()->getQueryParam('IdType')],
       ]);
       $countQuery = clone $plants;
-      $pages = new Pagination(['totalCount' => $plants->count(), 'pageSize' => 10]);
+      $pages = new Pagination(['totalCount' => $plants->count(), 'pageSize' => 5]);
       $models = $plants->offset($pages->offset)->limit($pages->limit)->all();
 
       $familyList = ArrayHelper::map(Botanicalfamily::find()->all(),'IdFamily', 'Name');
@@ -140,6 +149,14 @@ class ArboriculturaController extends Controller
         'plants' => $models,
         'typeList' => $typeList,
         'familyList' => $familyList,
+      ]);
+    }
+
+    public function actionContent($id)
+    {
+      $model = Pagedata::find()->where(['IdData' => $id])->one();
+      return $this->render('content',[
+        'model' => $model,
       ]);
     }
 }

@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'Actualizar Familia Botánica';
 $this->params['breadcrumbs'][] = ['label' => 'Familias Botánicas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Actualizar';
 ?>
 <div class="botanical-family-update">
 

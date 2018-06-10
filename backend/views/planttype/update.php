@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'Actualizar Tipo de planta';
 $this->params['breadcrumbs'][] = ['label' => 'Tipos de plantas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Actualizar';
 ?>
 <div class="planttype-update">
     <?= $this->render('_form', [

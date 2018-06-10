@@ -20,6 +20,7 @@
                     ['label' => 'Administradores', 'icon' => 'users', 'url' => ['/admin']],
                     ['label' => 'Usuarios finales', 'icon' => 'user', 'url' => ['/user']],
                     ['label' => 'Perfil', 'icon' => 'user-circle', 'url' => ['/user/profile']],
+                    ['label' => 'Contenido', 'icon' => 'file', 'url' => ['/pagedata/index']],
                 ],
             ]
         ) ?>

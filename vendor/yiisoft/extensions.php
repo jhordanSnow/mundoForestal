@@ -336,4 +336,31 @@ return array (
       '@kv4nt/owlcarousel' => $vendorDir . '/kv4nt/yii2-owl-carousel2',
     ),
   ),
+  'loveorigami/yii2-modal-ajax' => 
+  array (
+    'name' => 'loveorigami/yii2-modal-ajax',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@lo/widgets/modal' => $vendorDir . '/loveorigami/yii2-modal-ajax/src',
+    ),
+  ),
+  'kartik-v/yii2-markdown' => 
+  array (
+    'name' => 'kartik-v/yii2-markdown',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik/markdown' => $vendorDir . '/kartik-v/yii2-markdown/src',
+    ),
+  ),
+  '2amigos/yii2-ckeditor-widget' => 
+  array (
+    'name' => '2amigos/yii2-ckeditor-widget',
+    'version' => '2.1.0.0',
+    'alias' => 
+    array (
+      '@dosamigos/ckeditor' => $vendorDir . '/2amigos/yii2-ckeditor-widget/src',
+    ),
+  ),
 );
