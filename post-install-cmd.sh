@@ -6,6 +6,5 @@ if [ -n "$DYNO" ]  && [ -n "$ENV" ]; then
     php yii cache/flush-schema --interactive=0
     php artisan clear-compiled
     php artisan optimize
-    chmod -R 777 frontend/web/
-    chmod -R 777 backend/web/
+    chmod -R 777 /
 fi
