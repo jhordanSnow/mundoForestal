@@ -57,10 +57,5 @@
         "post-install-cmd": [
             "sh post-install-cmd.sh"
         ],
-        "compile": [
-          "chmod -R 777 /",
-          "chmod 755 /",
-          "chmod 644 etc/config.php"
-        ]
     }
 }
